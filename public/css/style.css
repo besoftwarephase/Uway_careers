@@ -130,7 +130,11 @@ position: relative;
 .logo_section img{
 width:120px;
 }
-
+.logo_section:hover {
+    background-image: url('images/bliend_b.png');
+    /* height: 70px; */
+    width: 120px;
+}
 .logo_line{
 width:60%;
 height:6px;
