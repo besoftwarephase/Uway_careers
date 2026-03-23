@@ -160,7 +160,6 @@ align-items:center;
 justify-content:center;
 color:#bbb;
 font-size:12px;
-font-family: 'inter';
 }
 
 .step_circles.active{
@@ -181,6 +180,11 @@ color:white;
 font-size:12px;
 letter-spacing: 0.5px;
 }
+.menu_list:hover
+{
+	color: #4383ba;
+    transition: all .25s ease;
+}
 .menu_list.active
 {
     font-weight: 400;
@@ -198,6 +202,11 @@ font-size: 24px;
 font-weight: 500;
 margin-bottom: -3px;
 color: #ffffffc2;
+}
+.subtitle:hover
+{
+	color: #4383ba;
+    transition: all .25s ease;
 }
 .description{
 color:#777;
