@@ -464,7 +464,7 @@ function validateStep3() {
     hideLoader();
 
     alert("Application submitted successfully!");
-    window.location.reload();
+    window.location.href = "/";
 })
 .catch(err => {
     hideLoader();
