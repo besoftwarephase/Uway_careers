@@ -527,8 +527,8 @@ $(function () {
 $("#dob").datepicker({
     dateFormat: "dd/mm/yy",
     duration: "fast",
-    minDate: new Date(1990, 0, 1),
-    maxDate: new Date(2003, 30, 12),
+    minDate: new Date(1990, 0, 1),   // Jan 1, 1990
+    maxDate: new Date(2003, 11, 31), // ✅ Dec 31, 2003
     defaultDate: new Date(1990, 0, 1)
 });
 
