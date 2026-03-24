@@ -108,10 +108,10 @@ async function sendEmailsInBackground(data, fileBuffer, ext, resumeURL) {
 
       <!-- HEADER -->
       <div style="background:#4F46E5;padding:24px 32px">
-        <h2 style="color:#fff;margin:0;font-size:20px;text-align:center">Candidate Job Application </h2>
-        <p style="color:#c7d2fe;margin:6px 0 0;font-size:13px;text-align:center">
-          Where Ideas Meet Opportunity
-        </p>
+        <h2 style="color:#fff;margin:0;font-size:20px;">Candidate Job Application </h2>
+        <p style="color:#c7d2fe;margin:6px 0 0;font-size:13px;">
+  Received On: ${new Date().toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+</p>
       </div>
 
       <div style="padding:24px 32px;background:#fff">
