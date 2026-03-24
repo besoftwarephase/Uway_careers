@@ -608,5 +608,25 @@ input::placeholder{
 .country_code:focus{
 color:#f5f5f5b8;
 }
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 150px; /* or fixed width */
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+#profile_email {
+  display: inline-block;
+  animation: marquee 8s linear infinite;
+}
+
+/* Optional: pause on hover */
+#profile_email:hover {
+  animation-play-state: paused;
+}
 
 
