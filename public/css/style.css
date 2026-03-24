@@ -222,7 +222,7 @@ body {
     gap: 20px;
     overflow-y: auto;
     padding-right: 5px;
-    max-height:230px;
+    max-height:225px;
 }
 
 .field_groups::-webkit-scrollbar {
