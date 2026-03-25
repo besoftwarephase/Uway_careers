@@ -370,44 +370,83 @@ function validateStep2() {
 // }
 
 function validateStep3() {
+    // let isValid = true;
+
+    // const fields = [q_5, exp, q_6, q_7, q_9];
+
+    // fields.forEach(fields => {
+
+    //     if (fields.value.trim() === "") {
+    //         fields.style.setProperty('border-color', '#ff4d4f', 'important');
+    //         isValid = false;
+
+    //     } else {
+
+    //         fields.style.borderColor = "unset";
+
+    //     }
+
+    // });
+    // /* FILE VALIDATION */
+    // const file = q_8.files[0];
+
+    // if (!file) {
+    //     alert("Please upload resume");
+    //     isValid = false;
+    // } else {
+    //     const allowedTypes = [
+    //         "application/pdf",
+    //         "application/msword",
+    //         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    //     ];
+
+    //     if (!allowedTypes.includes(file.type)) {
+    //         alert("Only PDF/DOC/DOCX allowed");
+    //         return;
+    //     }
+
+    //     if (file.size > 5 * 1024 * 1024) {
+    //         alert("Max size 5MB");
+    //         return;
+    //     }
+    // }
+
+    // if (!isValid) return;
     let isValid = true;
-
     const fields = [q_5, exp, q_6, q_7, q_9];
-
-    fields.forEach(fields => {
-
-        if (fields.value.trim() === "") {
-            fields.style.setProperty('border-color', '#ff4d4f', 'important');
+    fields.forEach(field => {
+        if (field.value.trim() === "") {
+            field.style.setProperty('border-color', '#ff4d4f', 'important');
             isValid = false;
-
         } else {
-
-            fields.style.borderColor = "unset";
-
+            field.style.borderColor = "unset";
         }
-
     });
+
+    /* SALARY VALIDATION */
+    if (q_6.value.trim() !== "" && isNaN(parseInt(q_6.value))) {
+        q_6.style.setProperty('border-color', '#ff4d4f', 'important');
+        isValid = false;
+    }
+
     /* FILE VALIDATION */
     const file = q_8.files[0];
-
     if (!file) {
-        alert("Please upload resume");
+        q_8.style.setProperty('border-color', '#ff4d4f', 'important'); // ✅ show border error
         isValid = false;
     } else {
+        q_8.style.borderColor = "unset";
         const allowedTypes = [
             "application/pdf",
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ];
-
         if (!allowedTypes.includes(file.type)) {
             alert("Only PDF/DOC/DOCX allowed");
-            return;
-        }
-
-        if (file.size > 5 * 1024 * 1024) {
+            isValid = false; // ✅ was: return (exits too early)
+        } else if (file.size > 5 * 1024 * 1024) {
             alert("Max size 5MB");
-            return;
+            isValid = false; // ✅ was: return (exits too early)
         }
     }
 
