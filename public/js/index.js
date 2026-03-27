@@ -32,7 +32,6 @@ function hideLoader() {
     document.body.classList.remove("no-scroll");
 }
 
-
 /* CLOSE BUTTON */
 closeBtn.addEventListener("click", function () {
     hideLoader();
@@ -109,12 +108,78 @@ const page2 = document.getElementById("step2_content");
 const page3 = document.getElementById("step3_content");
 
 
+/*======== STEP CIRCLE HELPER ============*/
+/* SVG tick mark used for completed steps */
+const TICK_SVG = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <polyline points="1.5,6 4.5,9.5 10.5,2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+/**
+ * setCircleState — updates a single step_circles element
+ * @param {number} index  - 0, 1, or 2
+ * @param {string} state  - "active" | "completed" | "disabled"
+ */
+function setCircleState(index, state) {
+    /* Desktop circles (inside .menu_bar) */
+    const desktopCircles = document.querySelectorAll(".menu_bar .step_circles");
+    /* Mobile circles */
+    const mobileCircles = [
+        document.getElementById("m_step1_circle"),
+        document.getElementById("m_step2_circle"),
+        document.getElementById("m_step3_circle")
+    ];
+
+    [desktopCircles[index], mobileCircles[index]].forEach(function(circle) {
+        if (!circle) return;
+
+        /* Remove all state classes */
+        circle.classList.remove("active", "completed", "disabled");
+
+        if (state === "completed") {
+            circle.classList.add("completed");
+            circle.innerHTML = TICK_SVG;
+        } else if (state === "active") {
+            circle.classList.add("active");
+            circle.innerHTML = index + 1;  /* Restore number */
+        } else {
+            circle.classList.add("disabled");
+            circle.innerHTML = index + 1;  /* Restore number */
+        }
+    });
+}
+
+/**
+ * setMenuState — updates a single menu_list element
+ * @param {number} index  - 0, 1, or 2
+ * @param {string} state  - "active" | "completed" | "disabled"
+ */
+function setMenuState(index, state) {
+    /* Desktop menu items */
+    const desktopMenus = document.querySelectorAll(".menu_bar .menu_list");
+    /* Mobile labels */
+    const mobileLabels = [
+        document.getElementById("m_step1_label"),
+        document.getElementById("m_step2_label"),
+        document.getElementById("m_step3_label")
+    ];
+
+    if (desktopMenus[index]) {
+        desktopMenus[index].classList.remove("active", "completed", "disabled");
+        desktopMenus[index].classList.add(state);
+    }
+
+    if (mobileLabels[index]) {
+        mobileLabels[index].classList.remove("active");
+        if (state === "active") {
+            mobileLabels[index].classList.add("active");
+        }
+    }
+}
+
+
 /*======== VALIDATE STEP 1 ============*/
-function validateStep1() 
+function validateStep1()
 {
-
-    console.log("Asha");
-
     let isValid = true;
 
     /* REGEX */
@@ -124,297 +189,138 @@ function validateStep1()
 
     /* NAME VALIDATION */
     if (fullName.value.trim() === "") {
-
         document.getElementById("fieldset_name").style.borderColor = "#ff4d4f";
         document.getElementById("name_error").innerText = "Full name is required";
         document.querySelector("#fieldset_name").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-
-    } 
-    else if (!nameRegex.test(fullName.value.trim())) {
-
+    } else if (!nameRegex.test(fullName.value.trim())) {
         document.getElementById("fieldset_name").style.borderColor = "#ff4d4f";
         document.getElementById("name_error").innerText = "Minimum 3 characters, letters only";
         document.querySelector("#fieldset_name").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-
-    } 
-    else 
-    {
+    } else {
         document.getElementById("name_error").innerText = "";
         document.getElementById("fieldset_name").style.borderColor = "unset";
         document.querySelector("#fieldset_name").closest(".input_field").querySelector(".error").style.display = "none";
     }
+
     /* DOB VALIDATION */
     if (dob.value === "") {
         document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
         document.getElementById("dob_error").innerText = "Date of birth is required";
         document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else 
-    {
+    } else {
         document.getElementById("dob_error").innerText = "";
         document.getElementById("fieldset_dob").style.borderColor = "unset";
         document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "none";
     }
+
     /* EMAIL VALIDATION */
-    if (email.value.trim() === "") 
-    {
+    if (email.value.trim() === "") {
         document.getElementById("fieldset_email").style.borderColor = "#ff4d4f";
         document.getElementById("email_error").innerText = "Email is required";
         document.querySelector("#fieldset_email").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else if (!emailRegex.test(email.value.trim())) 
-    {
+    } else if (!emailRegex.test(email.value.trim())) {
         document.getElementById("fieldset_email").style.borderColor = "#ff4d4f";
         document.getElementById("email_error").innerText = "Enter a valid email";
         document.querySelector("#fieldset_email").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else
-    {
+    } else {
         document.getElementById("fieldset_email").style.borderColor = "unset";
         document.getElementById("email_error").innerText = "";
         document.querySelector("#fieldset_email").closest(".input_field").querySelector(".error").style.display = "none";
     }
+
     /* PHONE VALIDATION */
-    if (phone.value.trim() === "") 
-    {
+    if (phone.value.trim() === "") {
         document.getElementById("fieldset_number").style.borderColor = "#ff4d4f";
         document.getElementById("contact_error").innerText = "Contact number required";
         document.querySelector("#fieldset_number").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else if (!phoneRegex.test(phone.value.trim())) 
-    {
+    } else if (!phoneRegex.test(phone.value.trim())) {
         document.getElementById("fieldset_number").style.borderColor = "#ff4d4f";
         document.getElementById("contact_error").innerText = "Enter valid phone number";
         document.querySelector("#fieldset_number").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else 
-    {
+    } else {
         document.getElementById("fieldset_number").style.borderColor = "unset";
         document.getElementById("contact_error").innerText = "";
         document.querySelector("#fieldset_number").closest(".input_field").querySelector(".error").style.display = "none";
     }
+
     /* LOCATION VALIDATION */
-    if (currentLocation.value.trim() === "") 
-    {
+    if (currentLocation.value.trim() === "") {
         document.getElementById("fieldset_location").style.borderColor = "#ff4d4f";
         document.getElementById("location_error").innerText = "Location required";
         document.querySelector("#fieldset_location").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
-    } 
-    else 
-    {
+    } else {
         document.getElementById("fieldset_location").style.borderColor = "unset";
         document.getElementById("location_error").innerText = "";
         document.querySelector("#fieldset_location").closest(".input_field").querySelector(".error").style.display = "none";
     }
+
     /* DESCRIPTION VALIDATION */
-    if (describe.value.trim() === "") 
-    {
+    if (describe.value.trim() === "") {
         document.getElementById("describe_field").style.setProperty("border-color", "#ff4d4f", "important");
         isValid = false;
     }
 
-
     /* IF ALL VALID MOVE TO STEP 2 */
-    if (isValid) 
-    {
+    if (isValid) {
         page1.style.display = "none";
         page2.style.display = "block";
 
-        document.querySelectorAll(".step_circles")[0].classList.remove("active");
-        document.querySelectorAll(".step_circles")[0].classList.add("completed");
+        /* Step 1 → completed (green circle with tick) */
+        setCircleState(0, "completed");
+        setMenuState(0, "completed");
 
-        document.querySelectorAll(".step_circles")[1].classList.remove("disabled");
-        document.querySelectorAll(".step_circles")[1].classList.add("active");
-
-        document.querySelectorAll(".menu_list")[0].classList.remove("active");
-        document.querySelectorAll(".menu_list")[0].classList.add("disabled");
-
-        document.querySelectorAll(".menu_list")[1].classList.remove("disabled");
-        document.querySelectorAll(".menu_list")[1].classList.add("active");
+        /* Step 2 → active */
+        setCircleState(1, "active");
+        setMenuState(1, "active");
     }
-
 }
 
-/*======== VALIDATE STEP 2 ============*/
 
+/*======== VALIDATE STEP 2 ============*/
 function validateStep2() {
     let isValid = true;
 
-    const fields = [q_1, q_2, q_3];
+    const qFields = [q_1, q_2, q_3];
 
-    fields.forEach(fields => {
-
-        if (fields.value.trim() === "") {
-            fields.style.setProperty('border-color', '#ff4d4f', 'important');
+    qFields.forEach(function(f) {
+        if (f.value.trim() === "") {
+            f.style.setProperty('border-color', '#ff4d4f', 'important');
             isValid = false;
-
         } else {
-
-            fields.style.borderColor = "unset";
-
+            f.style.borderColor = "unset";
         }
-
     });
+
     /* IF ALL VALID MOVE TO STEP 3 */
     if (isValid) {
-
         page2.style.display = "none";
         page3.style.display = "block";
 
-        /* SIDEBAR STATE */
-        document.querySelectorAll(".step_circles")[1].classList.remove("active");
-        document.querySelectorAll(".step_circles")[1].classList.add("completed");
-        document.querySelectorAll(".step_circles")[2].classList.remove("disabled");
-        document.querySelectorAll(".step_circles")[2].classList.add("active");
+        /* Step 2 → completed (green circle with tick) */
+        setCircleState(1, "completed");
+        setMenuState(1, "completed");
 
-        document.querySelectorAll(".menu_list")[1].classList.remove("active");
-        document.querySelectorAll(".menu_list")[1].classList.add("disabled");
-        document.querySelectorAll(".menu_list")[2].classList.remove("disabled");
-        document.querySelectorAll(".menu_list")[2].classList.add("active");
+        /* Step 3 → active */
+        setCircleState(2, "active");
+        setMenuState(2, "active");
     }
 }
 
+
 /*======== VALIDATE STEP 3 ============*/
-// function validateStep3()
-// {
-//      let isValid = true;
-
-//     const fields = [q_5, q_6, q_7, q_8, q_9];
-
-//     fields.forEach(fields => {
-
-//         if (fields.value.trim() === "") {
-//             fields.style.setProperty('border-color', '#ff4d4f', 'important');
-//             isValid = false;
-
-//         } else {
-
-//             fields.style.borderColor = "unset";
-
-//         }
-
-//     });
-//     if (isValid) {
-    
-//     document.querySelectorAll(".step_circles")[2].classList.add("completed");
-//     document.querySelectorAll(".step_circles")[2].classList.add("active");
-//     document.querySelectorAll(".menu_list")[2].classList.remove("disabled");
-//     showLoader();
-
-//     const fd = new FormData();
-
-//     fd.append("name", fullName.value);
-//     fd.append("email", email.value);
-//     fd.append("phone", phone.value);
-//     fd.append("dob", dob.value);
-//     fd.append("location", currentLocation.value);
-//     fd.append("describe", describe.value);
-
-//     fd.append("q_1", q_1.value);
-//     fd.append("q_2", q_2.value);
-//     fd.append("q_3", q_3.value);
-//     fd.append("q_4", q_4.value);
-
-//     fd.append("preferred_role", q_5.value);
-//     fd.append("expected_salary", q_6.value);
-//     fd.append("joining_date", q_7.value);
-
-//     if (q_8.files.length === 0) {
-//     q_8.style.setProperty('border-color', '#ff4d4f', 'important');
-//     isValid = false;
-//     } else {
-//     fd.append("resume", q_8.files[0]); // ✅ add file to formData
-//     }
-
-
-//     fd.append("message", q_9.value);
-
-//     fetch("http://localhost:3000/submit", {
-//     method: "POST",
-//     body: fd
-// })
-// .then(res => {
-//     if (!res.ok) {
-//         throw new Error("Server error");
-//     }
-//     return res.json();
-// })
-// .then(data => {
-
-//     hideLoader();
-
-//     if (data.status === "SUCCESS") {
-//         alert("Application submitted successfully!");
-//         setTimeout(() => window.location.reload(), 1000);
-//     } else {
-//         alert("Submission failed");
-//     }
-
-// })
-// .catch(err => {
-
-//     hideLoader();
-//     console.error(err);
-//     alert("Server error. Please try again.");
-
-// });
-// }
-// }
-
 function validateStep3() {
-    // let isValid = true;
-
-    // const fields = [q_5, exp, q_6, q_7, q_9];
-
-    // fields.forEach(fields => {
-
-    //     if (fields.value.trim() === "") {
-    //         fields.style.setProperty('border-color', '#ff4d4f', 'important');
-    //         isValid = false;
-
-    //     } else {
-
-    //         fields.style.borderColor = "unset";
-
-    //     }
-
-    // });
-    // /* FILE VALIDATION */
-    // const file = q_8.files[0];
-
-    // if (!file) {
-    //     alert("Please upload resume");
-    //     isValid = false;
-    // } else {
-    //     const allowedTypes = [
-    //         "application/pdf",
-    //         "application/msword",
-    //         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    //     ];
-
-    //     if (!allowedTypes.includes(file.type)) {
-    //         alert("Only PDF/DOC/DOCX allowed");
-    //         return;
-    //     }
-
-    //     if (file.size > 5 * 1024 * 1024) {
-    //         alert("Max size 5MB");
-    //         return;
-    //     }
-    // }
-
-    // if (!isValid) return;
     let isValid = true;
-    const fields = [q_5, exp, q_6, q_7, q_9];
-    fields.forEach(field => {
+
+    const stepFields = [q_5, exp, q_6, q_7, q_9];
+    stepFields.forEach(function(field) {
         if (field.value.trim() === "") {
             field.style.setProperty('border-color', '#ff4d4f', 'important');
             isValid = false;
@@ -432,7 +338,7 @@ function validateStep3() {
     /* FILE VALIDATION */
     const file = q_8.files[0];
     if (!file) {
-        q_8.style.setProperty('border-color', '#ff4d4f', 'important'); // ✅ show border error
+        q_8.style.setProperty('border-color', '#ff4d4f', 'important');
         isValid = false;
     } else {
         q_8.style.borderColor = "unset";
@@ -443,21 +349,22 @@ function validateStep3() {
         ];
         if (!allowedTypes.includes(file.type)) {
             alert("Only PDF/DOC/DOCX allowed");
-            isValid = false; // ✅ was: return (exits too early)
+            isValid = false;
         } else if (file.size > 5 * 1024 * 1024) {
             alert("Max size 5MB");
-            isValid = false; // ✅ was: return (exits too early)
+            isValid = false;
         }
     }
 
     if (!isValid) return;
-    document.querySelectorAll(".step_circles")[2].classList.add("completed");
-    document.querySelectorAll(".step_circles")[2].classList.add("active");
-    document.querySelectorAll(".menu_list")[2].classList.remove("disabled");
+
+    /* Step 3 → completed (green circle with tick) */
+    setCircleState(2, "completed");
+    setMenuState(2, "completed");
 
     showLoader();
 
-     const fd = new FormData();
+    const fd = new FormData();
 
     fd.append("name", fullName.value);
     fd.append("email", email.value);
@@ -470,7 +377,6 @@ function validateStep3() {
     fd.append("q_2", q_2.value);
     fd.append("q_3", q_3.value);
 
-
     fd.append("preferred_role", q_5.value);
     fd.append("experience", exp.value);
     fd.append("expected_salary", "₹ " + parseInt(q_6.value).toLocaleString("en-IN"));
@@ -479,128 +385,112 @@ function validateStep3() {
     fd.append("resume", file);
     fd.append("message", q_9.value);
 
-    /* ✅ FIXED API URL */
-   fetch("/submit", {
-    method: "POST",
-    body: fd
-})
-.then(async res => {
-
-    let data;
-
-    try {
-        data = await res.json();  // ✅ directly parse JSON
-    } catch (err) {
-        throw new Error("Server not returning JSON");
-    }
-
-    if (!res.ok) {
-        throw new Error(data.error || "Server error");
-    }
-
-    return data;
-})
-.then(data => {
-    hideLoader();
-
-    alert("Application submitted successfully!");
-    window.location.href = "/";
-})
-.catch(err => {
-    hideLoader();
-    console.error("ERROR:", err);
-    alert(err.message);
-});
-
+    fetch("/submit", {
+        method: "POST",
+        body: fd
+    })
+    .then(async res => {
+        let data;
+        try {
+            data = await res.json();
+        } catch (err) {
+            throw new Error("Server not returning JSON");
+        }
+        if (!res.ok) {
+            throw new Error(data.error || "Server error");
+        }
+        return data;
+    })
+    .then(data => {
+        hideLoader();
+        alert("Application submitted successfully!");
+        window.location.href = "/";
+    })
+    .catch(err => {
+        hideLoader();
+        console.error("ERROR:", err);
+        alert(err.message);
+    });
 }
 
 
 /*======== PREVIOUS STEP 2 ============*/
 var prevBtn2 = document.getElementById('prevBtn2');
-console.log("previous")
 
 prevBtn2.addEventListener("click", function () {
-
     page2.style.display = "none";
     page1.style.display = "block";
 
-    /* SIDEBAR STYLE */
-    document.querySelectorAll(".step_circles")[1].classList.remove("active");
-    document.querySelectorAll(".step_circles")[1].classList.add("disabled");
+    /* Step 2 → disabled */
+    setCircleState(1, "disabled");
+    setMenuState(1, "disabled");
 
-    document.querySelectorAll(".step_circles")[0].classList.remove("completed");
-    document.querySelectorAll(".step_circles")[0].classList.add("active");
-
-    document.querySelectorAll(".menu_list")[1].classList.remove("active");
-    document.querySelectorAll(".menu_list")[1].classList.add("disabled");
-
-    document.querySelectorAll(".menu_list")[0].classList.remove("disabled");
-    document.querySelectorAll(".menu_list")[0].classList.add("active");
-
+    /* Step 1 → active (restore number, NOT tick) */
+    setCircleState(0, "active");
+    setMenuState(0, "active");
 });
+
 
 /*======== PREVIOUS STEP 3 ============*/
 var prevBtn3 = document.getElementById('prevBtn3');
-prevBtn3.addEventListener("click", function () {
 
+prevBtn3.addEventListener("click", function () {
     page3.style.display = "none";
     page2.style.display = "block";
 
-    /* SIDEBAR STYLE */
-    document.querySelectorAll(".step_circles")[2].classList.remove("active");
-    document.querySelectorAll(".step_circles")[2].classList.add("disabled");
+    /* Step 3 → disabled */
+    setCircleState(2, "disabled");
+    setMenuState(2, "disabled");
 
-    document.querySelectorAll(".step_circles")[1].classList.remove("completed");
-    document.querySelectorAll(".step_circles")[1].classList.add("active");
-
-    document.querySelectorAll(".menu_list")[2].classList.remove("active");
-    document.querySelectorAll(".menu_list")[2].classList.add("disabled");
-
-    document.querySelectorAll(".menu_list")[1].classList.remove("disabled");
-    document.querySelectorAll(".menu_list")[1].classList.add("active");
-
+    /* Step 2 → active (restore number, NOT tick) */
+    setCircleState(1, "active");
+    setMenuState(1, "active");
 });
 
+
+/*======== DATEPICKERS ============*/
 $(function () {
 
-$("#dob").datepicker({
-    dateFormat: "dd/mm/yy",
-    duration: "fast",
-    minDate: new Date(1990, 0, 1),   // Jan 1, 1990
-    maxDate: new Date(2003, 11, 31), // ✅ Dec 31, 2003
-    defaultDate: new Date(1990, 0, 1)
+    $("#dob").datepicker({
+        dateFormat: "dd/mm/yy",
+        duration: "fast",
+        minDate: new Date(1990, 0, 1),
+        maxDate: new Date(2003, 11, 31),
+        defaultDate: new Date(1990, 0, 1)
+    });
+
+    $("#joining_date").datepicker({
+        dateFormat: "dd/mm/yy",
+        minDate: 0,
+        beforeShow: function(input, inst) {
+            setTimeout(function () {
+                inst.dpDiv.css({
+                    top: $(input).offset().top + $(input).outerHeight() + 5,
+                    left: $(input).offset().left
+                });
+            }, 0);
+        }
+    });
+
 });
 
-$("#joining_date").datepicker({
-    dateFormat: "dd/mm/yy",
-    minDate: 0,
-    beforeShow: function(input, inst) {
-        setTimeout(function () {
-            inst.dpDiv.css({
-                top: $(input).offset().top + $(input).outerHeight() + 5,
-                left: $(input).offset().left
-            });
-        }, 0);
-    }
-});
-
-});
 
 /*========== GET EMAIL ===========*/
 const storedEmail = localStorage.getItem("userEmail");
 
-// display it in div
 if (storedEmail) {
     document.getElementById("profile_email").textContent = storedEmail;
-    console.log(storedEmail)
     let arr = storedEmail.split("");
     let firstLetter = arr[0];
     let result = firstLetter.charAt(0).toUpperCase() + firstLetter.slice(1);
-    console.log(result);
-    document.getElementById('profile_img').textContent =result;
+    document.getElementById('profile_img').textContent = result;
+
+    /* Sync mobile profile icon */
+    var mobileIcon = document.getElementById('mobile_profile_icon');
+    if (mobileIcon) {
+        mobileIcon.textContent = result;
+    }
 }
-
-
 
 
 const countryCode = document.getElementById("countryCode");
@@ -610,5 +500,3 @@ function getFullNumber() {
     const fullNumber = countryCode.value + phoneNumber.value;
     console.log(fullNumber);
 }
-
-
