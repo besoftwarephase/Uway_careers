@@ -222,7 +222,7 @@ body {
     gap: 20px;
     overflow-y: auto;
     padding-right: 5px;
-    max-height:225px;
+    max-height: 225px;
 }
 
 .field_groups::-webkit-scrollbar {
@@ -353,7 +353,6 @@ input {
 
 .user_details {
     padding: 2px;
-   
 }
 
 .profile_img {
@@ -641,3 +640,364 @@ input::placeholder {
     color: #f5f5f5b8;
 }
 
+.footer{
+    text-align: center;
+    font-size: clamp(8px, 2vw, 9px);
+    color: #514f4ffc;
+    font-weight: 100;
+    margin-bottom: -9px;
+    margin-top: 15px;
+}
+.footer strong {
+    color: #e5e7ebb8;
+}
+
+/* ============================================================
+   MOBILE TOPBAR (hidden on desktop)
+   ============================================================ */
+.mobile_topbar {
+    display: none;
+    background: linear-gradient(120deg, #1c1c1c, #3a3a3a);
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 14px 14px 0 0;
+    border-bottom: 1px solid #f5f5f510;
+}
+
+.mobile_topbar .mobile_logo img {
+    width: 90px;
+    display: block;
+}
+
+.mobile_topbar .mobile_profile_icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #1175c6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Step indicator bar for mobile/tablet */
+.mobile_steps {
+    display: none;
+    background: #111;
+    padding: 10px 16px;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #f5f5f510;
+}
+
+.mobile_step_item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+}
+
+.mobile_step_item .step_circles {
+    min-width: 22px;
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+}
+
+.mobile_step_label {
+    font-size: 10px;
+    color: #ededed99;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+}
+
+.mobile_step_label.active {
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.mobile_step_divider {
+    width: 20px;
+    height: 1px;
+    background: #f5f5f520;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   TABLET — 768px to 959px
+   ============================================================ */
+@media (max-width: 959px) {
+    body {
+        min-width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .page_wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .page_content {
+        min-width: unset;
+        max-width: 100%;
+    }
+
+    .border-content {
+        border-radius: 16px !important;
+    }
+
+    /* Hide desktop sidebar, show mobile topbar + steps */
+    .menu_bar {
+        display: none;
+    }
+
+    .mobile_topbar {
+        display: flex;
+    }
+
+    .mobile_steps {
+        display: flex;
+    }
+
+    /* Form layout becomes single column */
+    .form-layout {
+        display: block;
+        border-radius: 0 0 16px 16px;
+        overflow: hidden;
+    }
+
+    .form_content {
+        padding: 20px 16px 16px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* Two-column grid stays on tablet */
+    .field_groups {
+        grid-template-columns: 1fr 1fr;
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+    }
+
+    .form_action,
+    .form_action_2 {
+        margin-top: 24px;
+    }
+
+    /* Currency position fix for tablet */
+    .currency {
+        left: auto;
+        margin-left: 0;
+    }
+
+    /* Spacers reduce on smaller screens */
+    .spacer {
+        height: 20px !important;
+        margin-top: 0 !important;
+    }
+     /*Footer*/
+    .footer{
+        text-align: center;
+        font-size: clamp(8px, 2vw, 9px);
+        color: #ffffff94;
+        font-weight: 100;
+        margin-bottom: -9px;
+        margin-top: 20px;
+    }
+}
+
+/* ============================================================
+   MOBILE — up to 767px
+   ============================================================ */
+@media (max-width: 767px) {
+    body {
+        min-width: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .page_wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 8px;
+        border-radius: 0;
+    }
+
+    .border-content {
+        border-radius: 14px !important;
+        padding: 0 !important;
+    }
+
+    .page_content {
+        min-width: unset;
+    }
+
+    /* Hide desktop sidebar */
+    .menu_bar {
+        display: none;
+    }
+
+    /* Show mobile header */
+    .mobile_topbar {
+        display: flex;
+    }
+
+    .mobile_topbar .mobile_logo img {
+        width: 80px;
+    }
+
+    /* Show step indicator */
+    .mobile_steps {
+        display: flex;
+    }
+
+    /* Stack the step label text even shorter on very small screens */
+    .mobile_step_label {
+        max-width: 60px;
+        font-size: 9px;
+    }
+
+    /* Form layout single column */
+    .form-layout {
+        display: block;
+        background: black;
+        border-radius: 0 0 14px 14px;
+        overflow: hidden;
+    }
+
+    .form_content {
+        padding: 16px 14px 14px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 11px;
+        margin-bottom: 18px;
+    }
+
+    /* Single column on mobile */
+    .field_groups {
+        grid-template-columns: 1fr;
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+        gap: 16px;
+    }
+
+    .full_width {
+        grid-column: 1;
+    }
+
+    /* Inputs full width */
+    .input_field input,
+    .input_field textarea {
+        width: 100%;
+    }
+
+    .job_roles {
+        width: 100%;
+    }
+
+    /* Buttons full width on mobile */
+    .form_action {
+        margin-top: 20px;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form_action_2 {
+        margin-top: 20px;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .next_btn,
+    .previous_btn,
+    .submit_btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* Currency symbol adjust */
+    .currency {
+        left: auto;
+        position: static;
+        margin-top: 0;
+    }
+
+    /* Datepicker fix */
+    #dob {
+        width: 100%;
+    }
+
+    /* Phone input */
+    .phone_number_field {
+        margin: 0 8px;
+    }
+
+    /* Modal responsive */
+    .modal-content {
+        width: 90%;
+    }
+
+    /* Spacers reduce */
+    .spacer {
+        height: 10px !important;
+        margin-top: 0 !important;
+    }
+    /*Footer*/
+    .footer{
+        text-align: center;
+        font-size: clamp(8px, 2vw, 9px);
+        color: #ffffff94;
+        font-weight: 100;
+        margin-bottom: -9px;
+        margin-top: 20px;
+    }
+}
+
+/* ============================================================
+   VERY SMALL MOBILE — up to 380px
+   ============================================================ */
+@media (max-width: 380px) {
+    .mobile_step_label {
+        display: none;
+    }
+
+    .mobile_step_divider {
+        width: 12px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+}
