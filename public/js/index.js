@@ -205,16 +205,54 @@ function validateStep1()
         document.querySelector("#fieldset_name").closest(".input_field").querySelector(".error").style.display = "none";
     }
 
-    /* DOB VALIDATION */
-    if (dob.value === "") {
-        document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
-        document.getElementById("dob_error").innerText = "Date of birth is required";
-        document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
+    /* GENDER VALIDATION */
+    if (gender.value === "") {
+        document.getElementById("fieldset_gender").style.borderColor = "#ff4d4f";
+        document.getElementById("gender_error").innerText = "Gender field is required";
+        document.querySelector("#fieldset_gender").closest(".input_field").querySelector(".error").style.display = "block";
         isValid = false;
     } else {
-        document.getElementById("dob_error").innerText = "";
-        document.getElementById("fieldset_dob").style.borderColor = "unset";
-        document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "none";
+        document.getElementById("gender_error").innerText = "";
+        document.getElementById("fieldset_gender").style.borderColor = "unset";
+        document.querySelector("#fieldset_gender").closest(".input_field").querySelector(".error").style.display = "none";
+    }
+
+     /* AGE VALIDATION */
+    if (dob.value.trim() === "") {
+    document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
+    document.getElementById("dob_error").innerText = "Age is required";
+    document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
+    isValid = false;
+
+    } else {
+        const age = Number(dob.value.trim());
+
+        if (isNaN(age)) {
+            document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
+            document.getElementById("dob_error").innerText = "Enter valid age";
+            document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
+            isValid = false;
+
+        } else if (age < 21) {
+            // 🔴 Less than 21
+            document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
+            document.getElementById("dob_error").innerText = "Minimum age is 21";
+            document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
+            isValid = false;
+
+        } else if (age > 45) {
+            // 🔴 Greater than 45
+            document.getElementById("fieldset_dob").style.borderColor = "#ff4d4f";
+            document.getElementById("dob_error").innerText = "Maximum age is 45";
+            document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "block";
+            isValid = false;
+
+        } else {
+            // ✅ Valid age
+            document.getElementById("dob_error").innerText = "";
+            document.getElementById("fieldset_dob").style.borderColor = "unset";
+            document.querySelector("#fieldset_dob").closest(".input_field").querySelector(".error").style.display = "none";
+        }
     }
 
     /* EMAIL VALIDATION */
