@@ -90,6 +90,7 @@ const fullName = document.getElementById("name");
 const email = document.getElementById("email");
 const phone = document.getElementById("phone");
 const dob = document.getElementById("dob");
+const gender = document.getElementById("gender");
 const currentLocation = document.getElementById("location");
 const describe = document.getElementById("describe");
 
@@ -401,6 +402,7 @@ if (!file) {
     fd.append("email", email.value);
     fd.append("phone", phone.value);
     fd.append("dob", dob.value);
+    fd.append("gender",gender.value);
     fd.append("location", currentLocation.value);
     fd.append("describe", describe.value);
 
