@@ -7,54 +7,6 @@
     <title>Career Page</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
-    
-    <!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.21/css/intlTelInput.css"/> -->
-</head>
-<!-- <style type="text/css">
-    .input-error { 
-        border: 1px solid red !important; 
-    }
-	.iti {
-		 width: 320px;
-	}
-	#phone {
-        width: 100%;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        scrollbar-width: none;
-	}
-	.iti__selected-dial-code {
-		color: #636363;
-        font-weight: 500;
-        font-size: 11px;
-        font-family: 'inter';
-	}
-	.iti__country-name{
-        font-size: 10px;
-        scrollbar-width: none;
-        padding: 1px;
-        color:#f5f5f591;;
-        font-family: 'inter';
-	}
-    .iti__dial-code {
-        color: #f5f5f5;
-        font-size: 10px;
-        font-family: 'inter';
-        font-weight: 100;   
-    }
-	.iti__country-list{
-		scrollbar-width: none;
-	}
-    .iti-mobile .iti__country-list {
-        max-height: 100%;
-        width: 100%;
-        background-color: #1c1c1c;
-        border: 1px solid #6363634a;
-    }
-	</style> -->
     <style>
     .ui-datepicker td {
         border: 0;
@@ -67,21 +19,12 @@
         border: 1px solid;
     }
     .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
-        /* border: 1px solid #c5c5c5; */
         background: #4c4848;
         font-weight: normal;
         color: #f5f5f585;
         text-align: center;
     }
-    .ui-datepicker .ui-datepicker-header {
-        position: relative;
-        padding: .2em 0;
-        background: #00000063;
-        border: 1px solid;
-    }
     .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-        /* border: 1px solid #dad55e; */
-        /* background: #2563ebb3; */
         color: #777620;
     }
     .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
@@ -90,86 +33,92 @@
         font-weight: normal;
         color: #2b2b2b;
     }
-    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
-    /* border: 1px solid #c5c5c5; */
-        background: #4c4848;
-        font-weight: normal;
-        color: #f5f5f585;
-        text-align: center;
-    }
-   
     </style>
+</head>
 
 <body>
 <div class="page_wrapper">
     <div class="spacer" style="width: 100%;height: 60px;margin-top:-30px"></div>
     <div class="border-content" style="padding: 15px;border-radius: 22px;background: #44444403;">
+
+        <!-- ====== MOBILE / TABLET TOPBAR (hidden on desktop via CSS) ====== -->
+        <div class="mobile_topbar">
+            <div class="mobile_logo">
+                <img src="images/Bliend_w_logo_header.svg" alt="logo">
+            </div>
+            <div class="mobile_profile_icon" id="mobile_profile_icon" title="Profile">
+                <!-- Initials injected by JS -->
+            </div>
+        </div>
+
+        <!-- ====== MOBILE STEP INDICATOR (hidden on desktop via CSS) ====== -->
+        <div class="mobile_steps" id="mobile_steps">
+            <div class="mobile_step_item">
+                <span class="step_circles active" id="m_step1_circle">1</span>
+                <span class="mobile_step_label active" id="m_step1_label">Personal</span>
+            </div>
+            <div class="mobile_step_divider"></div>
+            <div class="mobile_step_item">
+                <span class="step_circles disabled" id="m_step2_circle">2</span>
+                <span class="mobile_step_label" id="m_step2_label">Creative</span>
+            </div>
+            <div class="mobile_step_divider"></div>
+            <div class="mobile_step_item">
+                <span class="step_circles disabled" id="m_step3_circle">3</span>
+                <span class="mobile_step_label" id="m_step3_label">Position</span>
+            </div>
+        </div>
+        <!-- ====== END MOBILE HEADER ====== -->
+
         <div class="page_content">
             <div class="form-layout">
 
-                <!-- SIDEBAR -->
-
+                <!-- SIDEBAR (desktop only) -->
                 <div class="menu_bar">
-
                     <div class="logo_section" style="width: fit-content;margin: auto;">
                         <img src="images/Bliend_w_logo_header.svg" alt="logo" id="logo">
-                        <!-- <div class="logo_line"></div> -->
                     </div>
 
                     <nav class="nav_section">
-
                         <ul>
-
                             <li>
                                 <span class="step_circles active">1</span>
                                 <p class="menu_list active">Personal Information</p>
                             </li>
-
                             <li>
                                 <span class="step_circles disabled">2</span>
                                 <p class="menu_list disabled">Creative Assessment</p>
                             </li>
-
                             <li>
                                 <span class="step_circles disabled">3</span>
                                 <p class="menu_list disabled">Open Position and Final Details</p>
                             </li>
-
-                           
-
                         </ul>
-
                     </nav>
 
                     <div class="footer_section">
                         <div class="user_details">
                             <div class="profile_img" id="profile_img"></div>
-							<div class="marquee-wrapper">
-							  <span class="profile_email" id="profile_email">user@example.com</span>
-							</div>
-                            <!-- <button style="background: unset;outline: none;border: none;"><img src="images/icons8-logout-16.png" alt="logout"></button> -->
+                            <div class="marquee-wrapper">
+                                <span class="profile_email" id="profile_email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c797f697e4c69746d617c6069226f6361">[email&#160;protected]</a></span>
+                            </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- FORM SECTION -->
-
                 <div class="form_content">
                     <div class="step1_content" id="step1_content" style="display: block;">
                         <h2 class="subtitle">Personal Information</h2>
                         <p class="description">Enter the detailed information about yourself</p>
 
                         <div class="field_groups">
-
                             <div class="input_field">
-                                <fieldset class="highlight_text"  id="fieldset_name">
+                                <fieldset class="highlight_text" id="fieldset_name">
                                     <legend class="legend_label">Full Name</legend>
                                     <input type="text" id="name" autocomplete="off" placeholder="Enter your full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img"
-                                        id="span_error_img_1"><img src="images/icons8-info-error.png"
-                                            alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="name_error"></p>
                                 </div>
                             </div>
@@ -177,217 +126,144 @@
                             <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_dob">
                                     <legend class="legend_label">Date of Birth</legend>
-                                    <input type="text" id="dob" autocomplete="off"  placeholder="DD/MM/YYYY">
+                                    <input type="text" id="dob" autocomplete="off" placeholder="DD/MM/YYYY">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img"
-                                        id="span_error_img_2"><img src="images/icons8-info-error.png"
-                                            alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_2"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="dob_error"></p>
                                 </div>
-
                             </div>
 
                             <div class="input_field">
-                                <fieldset class="highlight_text" 
-                                    id="fieldset_email">
+                                <fieldset class="highlight_text" id="fieldset_email">
                                     <legend class="legend_label">Email Address</legend>
                                     <input type="email" id="email" autocomplete="off" placeholder="Enter your email address">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img"
-                                        id="span_error_img_3"><img src="images/icons8-info-error.png"
-                                            alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_3"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="email_error"></p>
                                 </div>
                             </div>
 
                             <div class="input_field">
-                                <fieldset class="highlight_text" 
-                                    id="fieldset_number">
+                                <fieldset class="highlight_text" id="fieldset_number">
                                     <legend class="legend_label">Contact Number</legend>
-                                     <div class="phone_number_field">
+                                    <div class="phone_number_field">
                                         <span class="country_code">+91</span>
-                                        <input type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            autocomplete="off"
+                                        <input type="tel" id="phone" name="phone" autocomplete="off"
                                             placeholder="Enter your phone number"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                            style="margin-left: -9px !important;"
-                                            required>
-                                    </div>  
+                                            style="margin-left: -9px !important;" required>
+                                    </div>
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img"
-                                        id="span_error_img_4"><img src="images/icons8-info-error.png"
-                                            alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_4"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="contact_error"></p>
                                 </div>
                             </div>
-                             <div class="input_field ">
+
+                            <div class="input_field">
                                 <fieldset id="describe_field" class="highlight_text">
                                     <legend class="legend_label">Describe Yourself</legend>
-                                    <textarea rows="3" id="describe"
-                                        style="border: none !important;"></textarea>
+                                    <textarea rows="3" id="describe" style="border: none !important;"></textarea>
                                 </fieldset>
                                 <p class="error_messages"></p>
                             </div>
+
                             <div class="input_field">
-                                <fieldset class="highlight_text" 
-                                    id="fieldset_location">
+                                <fieldset class="highlight_text" id="fieldset_location">
                                     <legend class="legend_label">Current Location</legend>
                                     <input type="location" id="location" autocomplete="off" placeholder="City/State">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img"
-                                        id="span_error_img_5"><img src="images/icons8-info-error.png"
-                                            alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_5"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="location_error"></p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form_action">
                             <button type="button" class="next_btn" id="step1_next_btn" onclick="validateStep1()">Next Step</button>
                         </div>
                     </div>
+
                     <div class="step2_content" id="step2_content" style="display: none;">
                         <h2 class="subtitle">Creative Assessment</h2>
                         <p class="description">Enter the detailed information about your creative knowledge</p>
 
                         <div class="field_groups">
-
                             <div class="input_field full_width">
-                                <p class="Questions">1.What are your hobbies or personal interests outside of work?
-                                </p>
-                                <textarea class="expand_area  highlight_text" id="Question_1"
-                                     rows="4"></textarea>
+                                <p class="Questions">1.What are your hobbies or personal interests outside of work?</p>
+                                <textarea class="expand_area highlight_text" id="Question_1" rows="4"></textarea>
                             </div>
-
                             <div class="input_field full_width">
                                 <p class="Questions">2.when your creative idea faces rejection whats your next move?</p>
-                                <textarea rows="4" id="Question_2" class="highlight_text" ></textarea>
+                                <textarea rows="4" id="Question_2" class="highlight_text"></textarea>
                             </div>
-
                             <div class="input_field full_width">
-                                <p class="Questions">3.In marketing campaign, what matters most to you, emotion, logic,
-                                    or attention ? Why ?</p>
-                                <textarea rows="4" id="Question_3" class="highlight_text" ></textarea>
+                                <p class="Questions">3.In marketing campaign, what matters most to you, emotion, logic, or attention ? Why ?</p>
+                                <textarea rows="4" id="Question_3" class="highlight_text"></textarea>
                             </div>
-
-                            <!-- <div class="input_field full_width">
-                                <p class="Questions">4.you have limited resources and time to launch a brand campaign.
-                                    how would you still make it unforgettable?</p>
-                                <textarea rows="4" id="Question_4" class="highlight_text" ></textarea>
-                            </div> -->
-
-
-
                         </div>
 
                         <div class="form_action_2">
-                            <button type="button" class="previous_btn" id="prevBtn2" style="background-color: gray;" >Previous Step</button>
-                            <button  type="button" class="next_btn" id="next_btn_2" onclick="validateStep2()">Next Step</button>
+                            <button type="button" class="previous_btn" id="prevBtn2" style="background-color: gray;">Previous Step</button>
+                            <button type="button" class="next_btn" id="next_btn_2" onclick="validateStep2()">Next Step</button>
                         </div>
                     </div>
+
                     <div class="step3_content" id="step3_content" style="display: none;">
                         <h2 class="subtitle">Open Position and Final Details</h2>
                         <p class="description">Enter the detailed information about your positions</p>
 
                         <div class="field_groups">
-
                             <div class="input_field">
                                 <p class="Questions">1. Prefered Role / Area of Interest</p>
-                                <select class="job_roles highlight_text" name="job_role" required id="job_role"
-                                   >
-                                 
-									<option value="" disabled selected hidden>Available Positions</option>
+                                <select class="job_roles highlight_text" name="job_role" required id="job_role">
+                                    <option value="" disabled selected hidden>Available Positions</option>
                                     <option value="Business Developement Executive (IT and Media)">Business Developement Executive (IT and Media)</option>
                                     <option value="Full Stack Developer">Full Stack Developer</option>
                                     <option value="UI / UX Designer">UI / UX Designer</option>
                                     <option value="Content Writer">Content Writer</option>
-                                    
                                 </select>
                             </div>
-							<div class="input_field">
+
+                            <div class="input_field">
                                 <p class="Questions">Experience</p>
-                                <select class="job_roles highlight_text" name="experience" required id="exp"
-                                   >
-                                   <option value="" disabled selected hidden>Years Of Experience</option>
+                                <select class="job_roles highlight_text" name="experience" required id="exp">
+                                    <option value="" disabled selected hidden>Years Of Experience</option>
                                     <option value="Fresher">Fresher</option>
                                     <option value="1+ years">1+ years</option>
                                     <option value="3+ years">3+ years</option>
-									<option value="5+ years">5+ years</option>
-                                  
+                                    <option value="5+ years">5+ years</option>
                                 </select>
                             </div>
 
                             <div class="input_field">
-							<p class="Questions">2. Expected Salary (Per Month)</p>
-							   <div style="
-							display: flex;
-							align-items: center;
-							border: 1px solid #f5f5f542;
-							border-radius: 5px;
-							overflow: hidden;
-							width: 100%;">
-							
-							<span class="currency" style="
-								padding: 8px 12px;
-								color: #fff;
-								font-weight: bold;
-								background: transparent;
-								white-space: nowrap;
-								font-size: 16px;
-								line-height: normal;"></span>
-							
-							<input 
-								type="number" 
-								class="highlight_text" 
-								id="salary" 
-								name="salary" 
-								placeholder="₹ 75,000"
-								min="1"
-								max="99999"
-								oninput="this.value = this.value.slice(0, 5)"
-								style="
-									border: none !important;
-									outline: none;
-									flex: 1;
-									padding: 8px 12px;
-									background: transparent;
-									color: #fff;
-									width: 100%;">
-							
-							<span style="
-								padding: 8px 12px;
-								color: #ffffff90;
-								font-size: 8px;
-								white-space: nowrap;
-								border-left: 1px solid #f5f5f542;
-								background: transparent;">
-								Per Annum
-							</span>
-							
-							</div>
-							</div>
+                                <p class="Questions">2. Expected Salary (Per Month)</p>
+                                <div style="display:flex;align-items:center;border:1px solid #f5f5f542;border-radius:5px;overflow:hidden;width:100%;">
+                                    <span class="currency" style="padding:8px 12px;color:#fff;font-weight:bold;background:transparent;white-space:nowrap;font-size:16px;line-height:normal;position:static;margin:0;width:auto;"></span>
+                                    <input type="number" class="highlight_text" id="salary" name="salary" placeholder="₹ 75,000"
+                                        min="1" max="99999" oninput="this.value = this.value.slice(0, 5)"
+                                        style="border:none !important;outline:none;flex:1;padding:8px 12px;background:transparent;color:#fff;width:100%;">
+                                    <span style="padding:8px 12px;color:#ffffff90;font-size:8px;white-space:nowrap;border-left:1px solid #f5f5f542;background:transparent;">Per Annum</span>
+                                </div>
+                            </div>
+
                             <div class="input_field">
                                 <p class="Questions">3.Available to join date ?</p>
-                                <input type="text" class="highlight_text"  id="joining_date" style="border: 1px solid #f5f5f542 !important;
-             border-radius: 5px !important;" placeholder="DD/MM/YYYY">
+                                <input type="text" class="highlight_text" id="joining_date"
+                                    style="border:1px solid #f5f5f542 !important;border-radius:5px !important;"
+                                    placeholder="DD/MM/YYYY">
                             </div>
-                            
 
                             <div class="input_field">
                                 <p class="Questions">4.Upload your resume (PDF,Docs)</p>
-                                <input type="file" class="highlight_text"  id="resume_file" style="border: 1px solid #f5f5f542 !important;
-    border-radius: 5px !important;color: #888888cc;" class="pdf_upload" accept=".pdf, .doc, .docx, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-
+                                <input type="file" class="highlight_text" id="resume_file"
+                                    style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
+                                    accept=".pdf, .doc, .docx, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                             </div>
 
                             <div class="input_field full_width">
                                 <p class="Questions">5.Additional information ( Why do you want to join us ?)</p>
                                 <textarea class="expand_area highlight_text" id="addition" rows="4"></textarea>
                             </div>
-
-
-
                         </div>
 
                         <div class="form_action_2">
@@ -399,120 +275,53 @@
             </div>
         </div>
     </div>
-   <div class="spacer" style="width: 100%;height: 60px;"></div>
+        <footer class="footer">
+        © 2026 Powered by <strong>Bliend</strong>. All Rights Reserved
+       </footer>
+    <div class="spacer" style="width: 100%;height: 60px;"></div>
 </div>
 
-
-    <!-- MODAL OUTSIDE WRAPPER -->
-
-    <div id="myModal" class="modal">
-        <span class="close"  id="closemodal">&times;</span>
-        <div class="modal-content">
-            <div class="loader-container">
-                <svg id="step-loader-b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 40 40" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
-                    overflow="visible">
-                    <style>
-                        <![CDATA[
-                        #step-loader-b-u-s1_to {
-                            animation: step-loader-b-u-s1_to__to 1000ms linear infinite normal forwards
-                        }
-
-                        @keyframes step-loader-b-u-s1_to__to {
-                            0% {
-                                transform: translate(26.82px, 10.7px)
-                            }
-
-                            100% {
-                                transform: translate(20.000001px, 19.999999px)
-                            }
-                        }
-
-                        #step-loader-b-u-s2_to {
-                            animation: step-loader-b-u-s2_to__to 1000ms linear infinite normal forwards
-                        }
-
-                        @keyframes step-loader-b-u-s2_to__to {
-                            0% {
-                                transform: translate(20.005001px, 19.999999px)
-                            }
-
-                            100% {
-                                transform: translate(13.185001px, 29.299999px)
-                            }
-                        }
-
-                        #step-loader-b-u-s3_to {
-                            animation: step-loader-b-u-s3_to__to 1000ms linear infinite normal forwards
-                        }
-
-                        @keyframes step-loader-b-u-s3_to__to {
-                            0% {
-                                offset-distance: 0%
-                            }
-
-                            30% {
-                                offset-distance: 6.585263%;
-                                animation-timing-function: cubic-bezier(0, 0.22, 0.995, 0.465)
-                            }
-
-                            100% {
-                                offset-distance: 100%
-                            }
-                        }
-
-                        #step-loader-b-u-s3_tr {
-                            animation: step-loader-b-u-s3_tr__tr 1000ms linear infinite normal forwards
-                        }
-
-                        @keyframes step-loader-b-u-s3_tr__tr {
-                            0% {
-                                transform: rotate(0deg)
-                            }
-
-                            30% {
-                                transform: rotate(0deg);
-                                animation-timing-function: cubic-bezier(0, 0.72, 0.98, 0.665)
-                            }
-
-                            100% {
-                                transform: rotate(180.000004deg)
-                            }
-                        }
-                        ]]>
-                    </style>
-                    <g id="step-loader-b-u-s1_to" transform="translate(26.82,10.7)">
-                        <path id="step-loader-b-u-s1"
-                            d="M13.77,13.42v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.98c-.58,0-1.06-.47-1.06-1.05v0Z"
-                            transform="translate(-26.82,-10.7)" fill="#3276b4" fill-rule="evenodd" stroke-width="0" />
+<!-- MODAL -->
+<div id="myModal" class="modal">
+    <span class="close" id="closemodal">&times;</span>
+    <div class="modal-content">
+        <div class="loader-container">
+            <svg id="step-loader-b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 40 40" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" overflow="visible">
+                <style>
+                    <![CDATA[
+                    #step-loader-b-u-s1_to { animation: step-loader-b-u-s1_to__to 1000ms linear infinite normal forwards }
+                    @keyframes step-loader-b-u-s1_to__to { 0% { transform: translate(26.82px,10.7px) } 100% { transform: translate(20.000001px,19.999999px) } }
+                    #step-loader-b-u-s2_to { animation: step-loader-b-u-s2_to__to 1000ms linear infinite normal forwards }
+                    @keyframes step-loader-b-u-s2_to__to { 0% { transform: translate(20.005001px,19.999999px) } 100% { transform: translate(13.185001px,29.299999px) } }
+                    #step-loader-b-u-s3_to { animation: step-loader-b-u-s3_to__to 1000ms linear infinite normal forwards }
+                    @keyframes step-loader-b-u-s3_to__to { 0% { offset-distance: 0% } 30% { offset-distance: 6.585263%; animation-timing-function: cubic-bezier(0,0.22,0.995,0.465) } 100% { offset-distance: 100% } }
+                    #step-loader-b-u-s3_tr { animation: step-loader-b-u-s3_tr__tr 1000ms linear infinite normal forwards }
+                    @keyframes step-loader-b-u-s3_tr__tr { 0% { transform: rotate(0deg) } 30% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0,0.72,0.98,0.665) } 100% { transform: rotate(180.000004deg) } }
+                    ]]>
+                </style>
+                <g id="step-loader-b-u-s1_to" transform="translate(26.82,10.7)">
+                    <path id="step-loader-b-u-s1" d="M13.77,13.42v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.98c-.58,0-1.06-.47-1.06-1.05v0Z" transform="translate(-26.82,-10.7)" fill="#3276b4" fill-rule="evenodd" stroke-width="0"/>
+                </g>
+                <g id="step-loader-b-u-s2_to" transform="translate(20.005001,19.999999)">
+                    <path id="step-loader-b-u-s2" d="M6.96,22.72v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.99c-.58,0-1.06-.47-1.06-1.05v0Z" transform="translate(-20.005001,-19.999999)" fill="#3276b4" fill-rule="evenodd" stroke-width="0"/>
+                </g>
+                <g id="step-loader-b-u-s3_to" style="offset-path:path('M13.185,29.3Q13.185,29.3,9.291856,32.032191C-22.575371,33.075006,-11.821489,-3.050328,26.805,10.725793');offset-rotate:0deg">
+                    <g id="step-loader-b-u-s3_tr" transform="rotate(0)">
+                        <path id="step-loader-b-u-s3" d="M0.14,32.02v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.99c-.58,0-1.06-.47-1.06-1.05h.01Z" transform="translate(-13.185,-29.3)" fill="#3276b4" fill-rule="evenodd" stroke-width="0"/>
                     </g>
-                    <g id="step-loader-b-u-s2_to" transform="translate(20.005001,19.999999)">
-                        <path id="step-loader-b-u-s2"
-                            d="M6.96,22.72v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.99c-.58,0-1.06-.47-1.06-1.05v0Z"
-                            transform="translate(-20.005001,-19.999999)" fill="#3276b4" fill-rule="evenodd"
-                            stroke-width="0" />
-                    </g>
-                    <g id="step-loader-b-u-s3_to"
-                        style="offset-path:path('M13.185,29.3Q13.185,29.3,9.291856,32.032191C-22.575371,33.075006,-11.821489,-3.050328,26.805,10.725793');offset-rotate:0deg">
-                        <g id="step-loader-b-u-s3_tr" transform="rotate(0)">
-                            <path id="step-loader-b-u-s3"
-                                d="M0.14,32.02v-5.44c0-.58.47-1.05,1.06-1.05h23.98c.58,0,1.06.47,1.06,1.05v5.44c0,.58-.47,1.05-1.06,1.05h-23.99c-.58,0-1.06-.47-1.06-1.05h.01Z"
-                                transform="translate(-13.185,-29.3)" fill="#3276b4" fill-rule="evenodd"
-                                stroke-width="0" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <p id="loaderText"
-                style="margin-top: 80px;font-size: 12px;font-weight: 200;letter-spacing: 1px;color: #ffffff75;">
-                Processing your resume document...</p>
+                </g>
+            </svg>
         </div>
+        <p id="loaderText" style="margin-top:80px;font-size:12px;font-weight:200;letter-spacing:1px;color:#ffffff75;">Processing your resume document...</p>
     </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<!--Country Code-->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.21/js/intlTelInput.min.js"></script> -->
-<script src="js/index.js"></script>
-</body>
+</div>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="index.js"></script>
+
+<!-- Mobile step sync is handled inside index.js via setCircleState / setMenuState -->
+
+</body>
 </html>
