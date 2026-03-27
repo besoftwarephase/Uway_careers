@@ -91,7 +91,7 @@ body {
 }
 
 .page_wrapper {
-    width: 75%;
+    width: 80%;
     max-width: 1200px;
     padding: 10px;
     border-radius: 12px;
@@ -744,48 +744,91 @@ input::placeholder {
 @media (max-width: 959px) {
     body {
         min-width: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: hidden;
         align-items: flex-start;
     }
 
     .page_wrapper {
         width: 100%;
         max-width: 100%;
-        padding: 12px;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: none;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .border-content {
+        border-radius: 0 !important;
+        margin-top: 0 !important;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 0 !important;
+    }
+
+    /* Static (sticky) mobile topbar — stays at top always */
+    .mobile_topbar {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        flex-shrink: 0;
+        border-radius: 0 !important;
+    }
+
+    .mobile_steps {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        flex-shrink: 0;
+    }
+
+    /* Hide desktop sidebar */
+    .menu_bar {
+        display: none;
     }
 
     .page_content {
         min-width: unset;
         max-width: 100%;
-    }
-
-    .border-content {
-        border-radius: 16px !important;
-    }
-
-    /* Hide desktop sidebar, show mobile topbar + steps */
-    .menu_bar {
-        display: none;
-    }
-
-    .mobile_topbar {
+        flex: 1;
+        overflow: hidden;
         display: flex;
-    }
-
-    .mobile_steps {
-        display: flex;
+        flex-direction: column;
     }
 
     /* Form layout becomes single column */
     .form-layout {
-        display: block;
-        border-radius: 0 0 16px 16px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0;
+        flex: 1;
         overflow: hidden;
     }
 
+    /* Scroll happens inside form_content only */
     .form_content {
         padding: 20px 16px 16px;
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Remove field_groups height cap — let form_content scroll instead */
+    .field_groups {
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+
+    /* Spacers not needed in fixed layout */
+    .spacer {
+        display: none !important;
     }
 
     .subtitle {
@@ -800,8 +843,6 @@ input::placeholder {
     /* Two-column grid stays on tablet */
     .field_groups {
         grid-template-columns: 1fr 1fr;
-        max-height: none;
-        overflow-y: visible;
         padding-right: 0;
     }
 
@@ -816,19 +857,15 @@ input::placeholder {
         margin-left: 0;
     }
 
-    /* Spacers reduce on smaller screens */
-    .spacer {
-        height: 20px !important;
-        margin-top: 0 !important;
-    }
-     /*Footer*/
-    .footer{
+    /*Footer*/
+    .footer {
         text-align: center;
         font-size: clamp(8px, 2vw, 9px);
         color: #ffffff94;
         font-weight: 100;
-        margin-bottom: -9px;
+        margin-bottom: 0;
         margin-top: 20px;
+        flex-shrink: 0;
     }
 }
 
@@ -877,6 +914,9 @@ input::placeholder {
     /* Show step indicator */
     .mobile_steps {
         display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
 
     /* Stack the step label text even shorter on very small screens */
@@ -890,7 +930,8 @@ input::placeholder {
         display: block;
         background: black;
         border-radius: 0 0 14px 14px;
-        overflow: hidden;
+        overflow-y: scroll;
+
     }
 
     .form_content {
