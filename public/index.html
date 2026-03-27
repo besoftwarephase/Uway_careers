@@ -26,9 +26,12 @@ html, body {
 body {
 
   background: #1A1A1A;
-  height: 100%
-  position:relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* or use margin-top: auto on footer */
   padding: 40px 16px;
+  position: relative;
 }
 
 /* ─── MAIN CONTENT ──────────────────────────────────────── */
@@ -213,15 +216,16 @@ body {
 .av5 { width: 40px; height: 40px; border: 3px solid #4c4d4fd6; margin-bottom: 8px; margin-left: -14px; z-index: 1; }
 
 /* ─── FOOTER ────────────────────────────────────────────── */
-.footer {
-    margin-top: 65px;
+.footer{
+    position: fixed;
+    bottom: -24%;
+    left: 0;
+    right: 0;
     text-align: center;
     font-size: clamp(8px, 2vw, 9px);
     color: #ffffff94;
     font-weight: 100;
-    margin-bottom: -1px;
 }
-
 .footer strong {
   color: #e5e7ebb8;
 }
@@ -262,10 +266,8 @@ body {
   .avatars {
     bottom: -22px;
   }
+  
 
-  .footer {
-    margin-top: 58px;
-  }
 }
 
 /* ════════════════════════════════════════════════════════
@@ -330,11 +332,11 @@ body {
   .avatars {
     bottom: -18px;
   }
-
-  .footer {
-    margin-top: 63px;
-    margin-bottom: -50px;
+  .footer{
+    bottom: -25%;
   }
+
+
 
 
 }
