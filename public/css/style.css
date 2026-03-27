@@ -109,7 +109,7 @@ body {
 
 .form-layout {
     display: grid;
-    grid-template-columns: 220px 1fr 1fr;
+    grid-template-columns: 220px 1fr ;
     background: black;
 }
 
@@ -223,7 +223,7 @@ body {
 
 .field_groups {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     overflow-y: auto;
     padding-right: 5px;
@@ -678,7 +678,7 @@ input::placeholder {
 .mobile_topbar {
     display: none;
     background: linear-gradient(120deg, #1c1c1c, #3a3a3a);
-    padding: 12px 16px;
+    padding: 16px 16px;
     align-items: center;
     justify-content: space-between;
     border-radius: 14px 14px 0 0;
@@ -709,7 +709,7 @@ input::placeholder {
 .mobile_steps {
     display: none;
     background: #111;
-    padding: 10px 16px;
+    padding: 14px 16px;
     gap: 8px;
     align-items: center;
     justify-content: center;
