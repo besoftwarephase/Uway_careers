@@ -650,7 +650,7 @@ input::placeholder {
     font-size: clamp(8px, 2vw, 9px);
     color: #514f4ffc;
     font-weight: 100;
-    margin-bottom: -9px;
+    margin-bottom: -26px;
     margin-top: 15px;
 }
 .footer strong {
@@ -863,8 +863,8 @@ input::placeholder {
         font-size: clamp(8px, 2vw, 9px);
         color: #ffffff94;
         font-weight: 100;
-        margin-bottom: 0;
-        margin-top: 20px;
+        margin-bottom: 5px;
+        margin-top: 21px;
         flex-shrink: 0;
     }
 }
@@ -1026,7 +1026,7 @@ input::placeholder {
         font-size: clamp(8px, 2vw, 9px);
         color: #ffffff94;
         font-weight: 100;
-        margin-bottom: -9px;
+        margin-bottom: -6px;
         margin-top: 20px;
     }
 }
