@@ -895,7 +895,7 @@ input::placeholder {
         font-size: clamp(8px, 2vw, 9px);
         color: #514f4ffc;
         font-weight: 100;
-        margin-bottom: -2px;
+        margin-bottom: 10px;
         margin-top: 20px;
     }
 }
@@ -1057,7 +1057,7 @@ input::placeholder {
         font-size: clamp(8px, 2vw, 9px);
         color: #514f4ffc;
         font-weight: 100;
-        margin-bottom: -1px;
+        margin-bottom: 5px;
         margin-top: 20px;
     }
 }
