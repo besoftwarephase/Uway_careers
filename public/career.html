@@ -33,6 +33,74 @@
         font-weight: normal;
         color: #2b2b2b;
     }
+    /* ─── Custom Select Wrapper ─── */
+    .custom_select_wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .custom_select_trigger {
+        width: 100%;
+        padding: 8px 12px;
+        color: #f5f5f5a0;
+        cursor: pointer;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'inter', sans-serif;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .custom_select_trigger::after {
+        content: '▾';
+        font-size: 14px;
+        color: #f5f5f5a0;
+        flex-shrink: 0;
+    }
+
+    .custom_select_trigger.selected {
+        color: #fff;
+    }
+
+    /* ─── OUTER BOX for Male / Female options ─── */
+    .custom_select_options {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        width: 100%;
+        background: #1a1a1a;
+        border: 1.5px solid #ffffff40; /* 👈 CHANGE THIS COLOR TO YOUR PREFERENCE */
+        border-radius: 6px;
+        z-index: 999;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .custom_select_options.open {
+        display: block;
+    }
+
+    .custom_option {
+        padding: 10px 14px;
+        color: #f5f5f5cc;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: 'inter', sans-serif;
+        transition: background 0.15s;
+    }
+
+    .custom_option:hover {
+        background: #ffffff15;
+        color: #fff;
+    }
+
+    .custom_option.active {
+        background: #ffffff10;
+        color: #fff;
+    }
     </style>
 </head>
 
@@ -122,7 +190,7 @@
                                     <p class="error_messages" id="name_error"></p>
                                 </div>
                             </div>
-                            <div class="input_field" >
+                            <!-- <div class="input_field" >
                                 <fieldset class="highlight_text" id="fieldset_dob">
                                     <legend class="legend_label"> Age </legend>
                                     <input type="text" id="dob" autocomplete="off" placeholder="How old are you?" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
@@ -130,7 +198,26 @@
                                 <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="dob_error"></p>
                                 </div>
+                            </div> -->
+                            <!-- ─── CUSTOM GENDER DROPDOWN ─── -->
+                            <div class="input_field">
+                                <fieldset class="highlight_text" id="fieldset_gender">
+                                    <legend class="legend_label">Gender</legend>
+                                    <div class="custom_select_wrapper" id="gender_wrapper">
+                                        <div class="custom_select_trigger" id="gender_trigger">Select Gender</div>
+                                        <div class="custom_select_options" id="gender_options">
+                                            <div class="custom_option" data-value="Male">Male</div>
+                                            <div class="custom_option" data-value="Female">Female</div>
+                                        </div>
+                                        <!-- Hidden input keeps value for your existing JS validation -->
+                                        <input type="hidden" id="gender" value="">
+                                    </div>
+                                </fieldset>
+                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                    <p class="error_messages" id="gender_error"></p>
+                                </div>
                             </div>
+                            <!-- ─── END CUSTOM GENDER DROPDOWN ─── -->
                             <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_gender">
                                     <legend class="legend_label">Gender</legend>
@@ -343,6 +430,49 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script>
+    (function () {
+        const trigger = document.getElementById('gender_trigger');
+        const optionsBox = document.getElementById('gender_options');
+        const hiddenInput = document.getElementById('gender');
+        const fieldset = document.getElementById('fieldset_gender');
+
+        // Toggle open/close
+        trigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            optionsBox.classList.toggle('open');
+        });
+
+        // Select an option
+        document.querySelectorAll('#gender_options .custom_option').forEach(function (option) {
+            option.addEventListener('click', function () {
+                // Set value on hidden input (so your existing validateStep1() can read it)
+                hiddenInput.value = this.dataset.value;
+
+                // Update trigger text
+                trigger.textContent = this.dataset.value;
+                trigger.classList.add('selected');
+
+                // Mark active option
+                document.querySelectorAll('#gender_options .custom_option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+
+                // Close dropdown
+                optionsBox.classList.remove('open');
+
+                // Trigger active-field highlight on fieldset (matches your existing CSS behaviour)
+                fieldset.classList.add('active-field');
+            });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('#gender_wrapper')) {
+                optionsBox.classList.remove('open');
+            }
+        });
+    })();
+</script>
 <script src="js/index.js"></script>
 
 <!-- Mobile step sync is handled inside index.js via setCircleState / setMenuState -->
