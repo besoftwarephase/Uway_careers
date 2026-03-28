@@ -59,19 +59,21 @@ fields.forEach(function (field) {
 
     /* FIX: Highlight background when field has a value (input = live typing) */
     field.addEventListener("input", function () {
+        if (this.value === undefined || this.value === null) return;
         if (this.value.trim() !== "") {
-            this.style.backgroundColor = "#f5f5f5";
+            this.style.color = "#f5f5f5 !important";
         } else {
-            this.style.backgroundColor = "";
+            this.style.color = "";
         }
     });
 
     /* FIX: Highlight background when field has a value (change = selects / datepicker / file) */
     field.addEventListener("change", function () {
+        if (this.value === undefined || this.value === null) return;
         if (this.value.trim() !== "") {
-            this.style.backgroundColor = "#f5f5f5";
+            this.style.color = "#f5f5f5 !important";
         } else {
-            this.style.backgroundColor = "";
+            this.style.color = "";
         }
     });
 
