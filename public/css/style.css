@@ -111,7 +111,7 @@ body {
     display: grid;
     grid-template-columns: 220px 1fr ;
     background: black;
-    max-height:fit-content;
+    
 }
 
 .menu_bar {
