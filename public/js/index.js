@@ -94,7 +94,6 @@ const q_2 = document.getElementById("Question_2");
 const q_3 = document.getElementById("Question_3");
 const q_5 = document.getElementById("job_role");
 const exp  = document.getElementById("exp");
-const work_location = document.getElementById("work_location");
 const q_6  = document.getElementById("salary");
 const q_7  = document.getElementById("joining_date");
 const q_8  = document.getElementById("resume_file");
@@ -326,15 +325,15 @@ function validateStep2() {
 function validateStep3() {
     let isValid = true;
 
-    /* ── FIX: guard against null (element not found in DOM) ── */
-    const stepFields = [q_5, exp, work_location, q_6, q_7, q_9];
+    /* FIX: Removed work_location from stepFields — it's a radio group, handled separately */
+    const stepFields = [q_5, exp, q_6, q_7, q_9];
     stepFields.forEach(function (field) {
-        if (!field) return; /* skip if getElementById returned null */
+        if (!field) return;
         if (field.value.trim() === "") {
             field.style.setProperty("border-color", "#ff4d4f", "important");
             isValid = false;
         } else {
-            field.style.borderColor = "unset";
+            field.style.removeProperty("border-color");
         }
     });
 
@@ -344,10 +343,16 @@ function validateStep3() {
         isValid = false;
     }
 
-    /* work_location radio/select — extra guard */
-    if (!work_location) {
-        console.warn("Element #work_location not found in the DOM");
+    /* FIX: work_location is a radio button group — use querySelector to get checked value */
+    const selectedWorkLocation = document.querySelector('input[name="work_location"]:checked');
+    if (!selectedWorkLocation) {
+        const radioGroup = document.getElementById("work_location_group");
+        if (radioGroup) radioGroup.style.setProperty("border-color", "#ff4d4f", "important");
+        console.warn("Work location not selected");
         isValid = false;
+    } else {
+        const radioGroup = document.getElementById("work_location_group");
+        if (radioGroup) radioGroup.style.removeProperty("border-color");
     }
 
     /* FILE VALIDATION */
@@ -361,7 +366,7 @@ function validateStep3() {
             q_8.style.setProperty("border-color", "#ff4d4f", "important");
             isValid = false;
         } else {
-            q_8.style.borderColor = "unset";
+            q_8.style.removeProperty("border-color");
 
             const allowedTypes = [
                 "application/pdf",
@@ -406,7 +411,7 @@ function validateStep3() {
     fd.append("experience",      exp ? exp.value : "");
     fd.append("expected_salary", q_6 ? "₹ " + parseInt(q_6.value).toLocaleString("en-IN") : "");
     fd.append("joining_date",    q_7 ? q_7.value : "");
-    fd.append("work_location",   work_location ? work_location.value : "");
+    fd.append("work_location",   selectedWorkLocation ? selectedWorkLocation.value : ""); /* FIX: use radio checked value */
     fd.append("resume",          q_8.files[0]);
     fd.append("message",         q_9 ? q_9.value : "");
 
