@@ -114,19 +114,19 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
     color: #374151;
 }
 
 .radio_option input[type="radio"] {
-    accent-color: #4F46E5; /* matches your indigo theme */
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
+   accent-color: #ffffffdb;
+   width: 14px;
+   height: 14px;
+   cursor: pointer;
 }
 
 .radio_option span {
-    color: inherit;
+   color: #888888cc;
 }
     </style>
 </head>
@@ -393,9 +393,18 @@
                                     style="border:1px solid #f5f5f542 !important;border-radius:5px !important;"
                                     placeholder="DD/MM/YYYY">
                             </div>
+            
+
+
                             <div class="input_field">
-                            <p class="Questions">Perfered Work Location</p>
-                            <div class="radio_group">
+                                <p class="Questions">4.Upload your resume (PDF,Docs)</p>
+                                <input type="file" class="highlight_text" id="resume_file"
+                                    style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
+                                    accept=".pdf, .doc, .docx, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                            </div>
+                             <div class="input_field">
+                            <p class="Questions">5.Preferred Work Location</p>
+                            <div class="radio_group" id="work_location">
                                 <label class="radio_option">
                                     <input type="radio" name="Perfered Work Location" value="On-site(Chennai)" required>
                                     <span>On-site(Chennai)</span>
@@ -405,20 +414,12 @@
                                     <span>Hybrid(Bangalore)</span>
                                 </label>
 
-                                
+                 
                              </div>
                             </div>
 
-
-                            <div class="input_field">
-                                <p class="Questions">4.Upload your resume (PDF,Docs)</p>
-                                <input type="file" class="highlight_text" id="resume_file"
-                                    style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
-                                    accept=".pdf, .doc, .docx, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
-                            </div>
-
                             <div class="input_field full_width">
-                                <p class="Questions">5.Additional information ( Why do you want to join us ?)</p>
+                                <p class="Questions">6.Additional information ( Why do you want to join us ?)</p>
                                 <textarea class="expand_area highlight_text" id="addition" rows="4"></textarea>
                             </div>
                         </div>
@@ -476,49 +477,6 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<script>
-    (function () {
-        const trigger = document.getElementById('gender_trigger');
-        const optionsBox = document.getElementById('gender_options');
-        const hiddenInput = document.getElementById('gender');
-        const fieldset = document.getElementById('fieldset_gender');
-
-        // Toggle open/close
-        trigger.addEventListener('click', function (e) {
-            e.stopPropagation();
-            optionsBox.classList.toggle('open');
-        });
-
-        // Select an option
-        document.querySelectorAll('#gender_options .custom_option').forEach(function (option) {
-            option.addEventListener('click', function () {
-                // Set value on hidden input (so your existing validateStep1() can read it)
-                hiddenInput.value = this.dataset.value;
-
-                // Update trigger text
-                trigger.textContent = this.dataset.value;
-                trigger.classList.add('selected');
-
-                // Mark active option
-                document.querySelectorAll('#gender_options .custom_option').forEach(o => o.classList.remove('active'));
-                this.classList.add('active');
-
-                // Close dropdown
-                optionsBox.classList.remove('open');
-
-                // Trigger active-field highlight on fieldset (matches your existing CSS behaviour)
-                fieldset.classList.add('active-field');
-            });
-        });
-
-        // Close when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('#gender_wrapper')) {
-                optionsBox.classList.remove('open');
-            }
-        });
-    })();
-</script>
 <script src="js/index.js"></script>
 
 <!-- Mobile step sync is handled inside index.js via setCircleState / setMenuState -->
