@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -102,6 +102,32 @@
         background: #ffffff10;
         color: #f5f5f5b8;
     } */
+    .radio_group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.radio_option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+}
+
+.radio_option input[type="radio"] {
+    accent-color: #4F46E5; /* matches your indigo theme */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.radio_option span {
+    color: inherit;
+}
     </style>
 </head>
 
@@ -367,6 +393,22 @@
                                     style="border:1px solid #f5f5f542 !important;border-radius:5px !important;"
                                     placeholder="DD/MM/YYYY">
                             </div>
+                            <div class="input_field">
+                            <p class="Questions">Perfered Work Location</p>
+                            <div class="radio_group">
+                                <label class="radio_option">
+                                    <input type="radio" name="Perfered Work Location" value="On-site(Chennai)" required>
+                                    <span>On-site(Chennai)</span>
+                                </label>
+                                <label class="radio_option">
+                                    <input type="radio" name="Perfered Work Location" value="Hybrid(Bangalore)">
+                                    <span>Hybrid(Bangalore)</span>
+                                </label>
+
+                                
+                             </div>
+                            </div>
+
 
                             <div class="input_field">
                                 <p class="Questions">4.Upload your resume (PDF,Docs)</p>
