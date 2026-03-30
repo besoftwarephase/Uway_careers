@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,101 +33,93 @@
         font-weight: normal;
         color: #2b2b2b;
     }
-    /* ─── Custom Select Wrapper ─── */
-    /* .custom_select_wrapper {
-        position: relative;
-        width: 100%;
+    .radio_group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 8px;
     }
-
-    .custom_select_trigger {
-    width: 100%;
-    padding: 8px 12px;
-    color: #f5f5f5a0;
-    cursor: pointer;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'inter', sans-serif;
-    font-size: 11px;
-    box-sizing: border-box;
-    font-weight: 100;
-    }
-
-    .custom_select_trigger::after {
-        content: '▾';
+    .radio_option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
         font-size: 12px;
-        color: #f5f5f5a0;
+        color: #374151;
+    }
+    .radio_option input[type="radio"] {
+       accent-color: #ffffffdb;
+       width: 14px;
+       height: 14px;
+       cursor: pointer;
+    }
+    .radio_option span {
+       color: #888888cc;
+    }
+
+    /* ─── Custom Dropdown ─── */
+    .cd-wrapper {
+        position: relative;
+        width: 98%;
+    }
+    .cd-trigger {
+        width: 100%;
+        padding: 9px 12px;
+        background: #000;
+        border: 1px solid #f5f5f542;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'inter', sans-serif;
+        font-size: 11px;
+        font-weight: 100;
+        color: #888888cc;
+        box-sizing: border-box;
+        user-select: none;
+        transition: border-color 0.2s;
+    }
+    .cd-trigger:hover { border-color: #f5f5f580; }
+    .cd-trigger.cd-open {
+        border-color: #2563eb69;
+        box-shadow: 0 0 0 2px #2563eb2b;
+    }
+    .cd-trigger.cd-selected { color: #f5f5f5b8; }
+    .cd-arrow {
+        width: 12px;
+        height: 12px;
         flex-shrink: 0;
+        margin-left: 8px;
+        transition: transform 0.2s;
     }
-
-    .custom_select_trigger.selected {
-        color: #f5f5f5b8;
-    }
-
-    /* ─── OUTER BOX for Male 
-    .custom_select_options {
+    .cd-trigger.cd-open .cd-arrow { transform: rotate(180deg); }
+    .cd-menu {
         display: none;
         position: absolute;
         top: calc(100% + 6px);
         left: 0;
         width: 100%;
         background: #1a1a1a;
-        border: 1px solid #ffffff40; 
+        border: 1px solid #f5f5f530;
         border-radius: 6px;
         z-index: 999;
         overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
-
-    .custom_select_options.open {
-        display: block;
-    }
-
-    .custom_option {
+    .cd-menu.cd-open { display: block; }
+    .cd-option {
         padding: 10px 14px;
-        color: #f5f5f5cc;
+        color: #888888cc;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 100;
         font-family: 'inter', sans-serif;
-        transition: background 0.15s;
+        transition: background 0.12s;
     }
-
-    .custom_option:hover {
-        background: #ffffff15;
-        color: #fff;
-    }
-
-    .custom_option.active {
-        background: #ffffff10;
-        color: #f5f5f5b8;
-    } */
-    .radio_group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.radio_option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 12px;
-    color: #374151;
-}
-
-.radio_option input[type="radio"] {
-   accent-color: #ffffffdb;
-   width: 14px;
-   height: 14px;
-   cursor: pointer;
-}
-
-.radio_option span {
-   color: #888888cc;
-}
+    .cd-option:hover { background: #ffffff12; color: #f5f5f5cc; }
+    .cd-option.cd-active { background: #2563eb18; color: #f5f5f5b8; }
+    /* ─── End Custom Dropdown ─── */
     </style>
 </head>
 
@@ -136,17 +128,15 @@
     <div class="spacer" style="width: 100%;height: 60px;margin-top:-30px"></div>
     <div class="border-content" style="padding: 15px;border-radius: 22px;background: #44444403;">
 
-        <!-- ====== MOBILE / TABLET TOPBAR (hidden on desktop via CSS) ====== -->
+        <!-- ====== MOBILE / TABLET TOPBAR ====== -->
         <div class="mobile_topbar">
             <div class="mobile_logo">
                 <img src="images/Bliend_w_logo_header.svg" alt="logo">
             </div>
-            <div class="mobile_profile_icon" id="mobile_profile_icon" title="Profile">
-                <!-- Initials injected by JS -->
-            </div>
+            <div class="mobile_profile_icon" id="mobile_profile_icon" title="Profile"></div>
         </div>
 
-        <!-- ====== MOBILE STEP INDICATOR (hidden on desktop via CSS) ====== -->
+        <!-- ====== MOBILE STEP INDICATOR ====== -->
         <div class="mobile_steps" id="mobile_steps">
             <div class="mobile_step_item">
                 <span class="step_circles active" id="m_step1_circle">1</span>
@@ -163,12 +153,11 @@
                 <span class="mobile_step_label" id="m_step3_label">Position</span>
             </div>
         </div>
-        <!-- ====== END MOBILE HEADER ====== -->
 
         <div class="page_content">
             <div class="form-layout">
 
-                <!-- SIDEBAR (desktop only) -->
+                <!-- SIDEBAR -->
                 <div class="menu_bar">
                     <div class="logo_section" style="width: fit-content;margin: auto;">
                         <img src="images/Bliend_w_logo_header.svg" alt="logo" id="logo">
@@ -203,6 +192,8 @@
 
                 <!-- FORM SECTION -->
                 <div class="form_content">
+
+                    <!-- STEP 1 -->
                     <div class="step1_content" id="step1_content" style="display: block;">
                         <h2 class="subtitle">Personal Information</h2>
                         <p class="description">Enter the detailed information about yourself</p>
@@ -213,68 +204,55 @@
                                     <legend class="legend_label">Full Name</legend>
                                     <input type="text" id="name" autocomplete="off" placeholder="Enter your full name" oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="name_error"></p>
                                 </div>
                             </div>
-                            <div class="input_field" >
+
+                            <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_dob">
-                                    <legend class="legend_label"> Age </legend>
-                                    <input type="text" id="dob" autocomplete="off" placeholder="How old are you?" maxlength="2"  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
+                                    <legend class="legend_label">Age</legend>
+                                    <input type="text" id="dob" autocomplete="off" placeholder="How old are you?" maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="dob_error"></p>
                                 </div>
                             </div>
+
                             <!-- ─── CUSTOM GENDER DROPDOWN ─── -->
-                            <!-- <div class="input_field">
-                                <fieldset class="highlight_text" id="fieldset_gender">
-                                    <legend class="legend_label">Gender</legend>
-                                    <div class="custom_select_wrapper" id="gender_wrapper">
-                                        <div class="custom_select_trigger" id="gender_trigger">Select Gender</div>
-                                        <div class="custom_select_options" id="gender_options">
-                                            <div class="custom_option" data-value="Male">Male</div>
-                                            <div class="custom_option" data-value="Female">Female</div>
-                                        </div>
-                                       
-                                        <input type="hidden" id="gender" value="">
-                                    </div>
-                                </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
-                                    <p class="error_messages" id="gender_error"></p>
-                                </div>
-                            </div> -->
-                            <!-- ─── END CUSTOM GENDER DROPDOWN ─── -->
                             <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_gender">
                                     <legend class="legend_label">Gender</legend>
-                                    <select id="gender" class="job_roles highlight_text">
-                                        <option value="" disabled selected hidden>Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                    <input type="hidden" id="gender" value="">
+                                    <div class="cd-wrapper" id="gender_wrapper">
+                                        <div class="cd-trigger" id="gender_trigger" onclick="cdToggle('gender')">
+                                            <span id="gender_label">Select Gender</span>
+                                            <svg class="cd-arrow" viewBox="0 0 12 12" fill="none">
+                                                <path d="M2 4l4 4 4-4" stroke="#888888cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="cd-menu" id="gender_menu">
+                                            <div class="cd-option" onclick="cdSelect('gender','Male','Male')">Male</div>
+                                            <div class="cd-option" onclick="cdSelect('gender','Female','Female')">Female</div>
+                                        </div>
+                                    </div>
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_1"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="gender_error"></p>
                                 </div>
-                            </div> 
-
-                            <!-- <div class="input_field">
-                                <fieldset class="highlight_text" id="fieldset_dob">
-                                    <legend class="legend_label">Date of Birth</legend>
-                                    <input type="text" id="dob" autocomplete="off" placeholder="DD/MM/YYYY">
-                                </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_2"><img src="images/icons8-info-error.png" alt="error_image"></span>
-                                    <p class="error_messages" id="dob_error"></p>
-                                </div>
-                            </div> -->
+                            </div>
+                            <!-- ─── END CUSTOM GENDER DROPDOWN ─── -->
 
                             <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_email">
                                     <legend class="legend_label">Email Address</legend>
                                     <input type="email" id="email" autocomplete="off" placeholder="Enter your email address">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_3"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="email_error"></p>
                                 </div>
                             </div>
@@ -290,16 +268,19 @@
                                             style="margin-left: -9px !important;" required>
                                     </div>
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_4"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="contact_error"></p>
                                 </div>
                             </div>
-                             <div class="input_field">
+
+                            <div class="input_field">
                                 <fieldset class="highlight_text" id="fieldset_location">
                                     <legend class="legend_label">Current Location</legend>
                                     <input type="text" id="location" autocomplete="off" placeholder="City/State">
                                 </fieldset>
-                                <div class="error" style="margin-top: 8px;display: none;"><span class="span_error_img" id="span_error_img_5"><img src="images/icons8-info-error.png" alt="error_image"></span>
+                                <div class="error" style="margin-top: 8px;display: none;">
+                                    <span class="span_error_img"><img src="images/icons8-info-error.png" alt="error_image"></span>
                                     <p class="error_messages" id="location_error"></p>
                                 </div>
                             </div>
@@ -309,33 +290,31 @@
                                     <legend class="legend_label">Describe Yourself</legend>
                                     <textarea rows="3" id="describe" style="border: none !important;"></textarea>
                                 </fieldset>
-                                <p class="error_messages"></p>
                             </div>
-
-                           
                         </div>
 
                         <div class="form_action">
-                             <button type="button" class="previous_btn" id="prevBtn" style="background-color: gray;opacity:0">Previous Step</button>
+                            <button type="button" class="previous_btn" id="prevBtn" style="background-color: gray;opacity:0">Previous Step</button>
                             <button type="button" class="next_btn" id="step1_next_btn" onclick="validateStep1()">Next Step</button>
                         </div>
                     </div>
 
+                    <!-- STEP 2 -->
                     <div class="step2_content" id="step2_content" style="display: none;">
                         <h2 class="subtitle">Creative Assessment</h2>
                         <p class="description">Enter the detailed information about your creative knowledge</p>
 
                         <div class="field_groups">
                             <div class="input_field full_width">
-                                <p class="Questions">1.What are your hobbies or personal interests outside of work?</p>
+                                <p class="Questions">1. What are your hobbies or personal interests outside of work?</p>
                                 <textarea class="expand_area highlight_text" id="Question_1" rows="4"></textarea>
                             </div>
                             <div class="input_field full_width">
-                                <p class="Questions">2.when your creative idea faces rejection whats your next move?</p>
+                                <p class="Questions">2. When your creative idea faces rejection, what's your next move?</p>
                                 <textarea rows="4" id="Question_2" class="highlight_text"></textarea>
                             </div>
                             <div class="input_field full_width">
-                                <p class="Questions">3.In marketing campaign, what matters most to you, emotion, logic, or attention ? Why ?</p>
+                                <p class="Questions">3. In a marketing campaign, what matters most to you — emotion, logic, or attention? Why?</p>
                                 <textarea rows="4" id="Question_3" class="highlight_text"></textarea>
                             </div>
                         </div>
@@ -346,35 +325,56 @@
                         </div>
                     </div>
 
+                    <!-- STEP 3 -->
                     <div class="step3_content" id="step3_content" style="display: none;">
                         <h2 class="subtitle">Open Position and Final Details</h2>
                         <p class="description">Enter the detailed information about your positions</p>
 
                         <div class="field_groups">
-                            <div class="input_field">
-                                <p class="Questions">1. Prefered Role / Area of Interest</p>
-                                <select class="job_roles highlight_text" name="job_role" required id="job_role">
-                                    <option value="" disabled selected hidden>Available Positions</option>
-                                    <option value="Business Developement Executive (IT and Media)">Business Developement Executive</option>
-                                    <option value="Full Stack Developer">Full Stack Developer</option>
-                                    <option value="UI / UX Designer">UI / UX Designer</option>
-                                    <option value="Content Writer">Content Writer</option>
-                                    <option value="Graphic Designer">Graphic Designer</option>
-                                    <option value="Motion Graphic/3D Designer">Motion Graphic/3D Designer</option>
-                                    
-                                </select>
-                            </div>
 
+                            <!-- ─── CUSTOM JOB ROLE DROPDOWN ─── -->
+                            <div class="input_field">
+                                <p class="Questions">1. Preferred Role / Area of Interest</p>
+                                <input type="hidden" id="job_role" name="job_role" value="">
+                                <div class="cd-wrapper" id="job_role_wrapper">
+                                    <div class="cd-trigger" id="job_role_trigger" onclick="cdToggle('job_role')">
+                                        <span id="job_role_label">Available Positions</span>
+                                        <svg class="cd-arrow" viewBox="0 0 12 12" fill="none">
+                                            <path d="M2 4l4 4 4-4" stroke="#888888cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cd-menu" id="job_role_menu">
+                                        <div class="cd-option" onclick="cdSelect('job_role','Business Development Executive','Business Developement Executive (IT and Media)')">Business Development Executive</div>
+                                        <div class="cd-option" onclick="cdSelect('job_role','Full Stack Developer','Full Stack Developer')">Full Stack Developer</div>
+                                        <div class="cd-option" onclick="cdSelect('job_role','UI / UX Designer','UI / UX Designer')">UI / UX Designer</div>
+                                        <div class="cd-option" onclick="cdSelect('job_role','Content Writer','Content Writer')">Content Writer</div>
+                                        <div class="cd-option" onclick="cdSelect('job_role','Graphic Designer','Graphic Designer')">Graphic Designer</div>
+                                        <div class="cd-option" onclick="cdSelect('job_role','Motion Graphic/3D Designer','Motion Graphic/3D Designer')">Motion Graphic/3D Designer</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ─── END CUSTOM JOB ROLE DROPDOWN ─── -->
+
+                            <!-- ─── CUSTOM EXPERIENCE DROPDOWN ─── -->
                             <div class="input_field">
                                 <p class="Questions">Experience</p>
-                                <select class="job_roles highlight_text" name="experience" required id="exp">
-                                    <option value="" disabled selected hidden>Years Of Experience</option>
-                                    <option value="Fresher">Fresher</option>
-                                    <option value="1+ years">1+ years</option>
-                                    <option value="3+ years">3+ years</option>
-                                    <option value="5+ years">5+ years</option>
-                                </select>
+                                <input type="hidden" id="exp" name="experience" value="">
+                                <div class="cd-wrapper" id="exp_wrapper">
+                                    <div class="cd-trigger" id="exp_trigger" onclick="cdToggle('exp')">
+                                        <span id="exp_label">Years Of Experience</span>
+                                        <svg class="cd-arrow" viewBox="0 0 12 12" fill="none">
+                                            <path d="M2 4l4 4 4-4" stroke="#888888cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="cd-menu" id="exp_menu">
+                                        <div class="cd-option" onclick="cdSelect('exp','Fresher','Fresher')">Fresher</div>
+                                        <div class="cd-option" onclick="cdSelect('exp','1+ years','1+ years')">1+ years</div>
+                                        <div class="cd-option" onclick="cdSelect('exp','3+ years','3+ years')">3+ years</div>
+                                        <div class="cd-option" onclick="cdSelect('exp','5+ years','5+ years')">5+ years</div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- ─── END CUSTOM EXPERIENCE DROPDOWN ─── -->
 
                             <div class="input_field">
                                 <p class="Questions">2. Expected Salary</p>
@@ -388,38 +388,35 @@
                             </div>
 
                             <div class="input_field">
-                                <p class="Questions">3.Available to join date ?</p>
+                                <p class="Questions">3. Available to join date?</p>
                                 <input type="text" class="highlight_text" id="joining_date"
                                     style="border:1px solid #f5f5f542 !important;border-radius:5px !important;"
                                     placeholder="DD/MM/YYYY">
                             </div>
-            
-
 
                             <div class="input_field">
-                                <p class="Questions">4.Upload your resume (PDF,Docs)</p>
+                                <p class="Questions">4. Upload your resume (PDF, Docs)</p>
                                 <input type="file" class="highlight_text" id="resume_file"
                                     style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
                                     accept=".pdf, .doc, .docx, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                             </div>
-                             <div class="input_field">
-                            <p class="Questions">5.Preferred Work Location</p>
-                            <div class="radio_group" id="work_location">
-                                <label class="radio_option">
-                                    <input type="radio" name="Perfered Work Location" value="On-site(Chennai)" required>
-                                    <span>On-site(Chennai)</span>
-                                </label>
-                                <label class="radio_option">
-                                    <input type="radio" name="Perfered Work Location" value="Hybrid(Bangalore)">
-                                    <span>Hybrid(Bangalore)</span>
-                                </label>
 
-                 
-                             </div>
+                            <div class="input_field">
+                                <p class="Questions">5. Preferred Work Location</p>
+                                <div class="radio_group" id="work_location">
+                                    <label class="radio_option">
+                                        <input type="radio" name="Perfered Work Location" value="On-site(Chennai)" required>
+                                        <span>On-site (Chennai)</span>
+                                    </label>
+                                    <label class="radio_option">
+                                        <input type="radio" name="Perfered Work Location" value="Hybrid(Bangalore)">
+                                        <span>Hybrid (Bangalore)</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="input_field full_width">
-                                <p class="Questions">6.Additional information ( Why do you want to join us ?)</p>
+                                <p class="Questions">6. Additional information (Why do you want to join us?)</p>
                                 <textarea class="expand_area highlight_text" id="addition" rows="4"></textarea>
                             </div>
                         </div>
@@ -429,13 +426,15 @@
                             <button type="button" class="submit_btn" id="submit_btn" onclick="validateStep3()">Submit</button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-        <footer class="footer">
+
+    <footer class="footer">
         © 2026 Powered by <strong>Bliend</strong>. All Rights Reserved
-       </footer>
+    </footer>
     <div class="spacer" style="width: 100%;height: 60px;"></div>
 </div>
 
@@ -475,11 +474,54 @@
     </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script src="js/index.js"></script>
 
-<!-- Mobile step sync is handled inside index.js via setCircleState / setMenuState -->
+<!-- ─── Custom Dropdown JS ─── -->
+<script>
+function cdToggle(id) {
+    var trigger = document.getElementById(id + '_trigger');
+    var menu = document.getElementById(id + '_menu');
+    var isOpen = menu.classList.contains('cd-open');
+    document.querySelectorAll('.cd-menu.cd-open').forEach(function(m) { m.classList.remove('cd-open'); });
+    document.querySelectorAll('.cd-trigger.cd-open').forEach(function(t) { t.classList.remove('cd-open'); });
+    document.querySelectorAll('fieldset.cd-focused').forEach(function(f) { f.classList.remove('cd-focused'); });
+    if (!isOpen) {
+        trigger.classList.add('cd-open');
+        menu.classList.add('cd-open');
+        var wrapper = document.getElementById(id + '_wrapper');
+        if (wrapper) { var fs = wrapper.closest('fieldset'); if (fs) fs.classList.add('cd-focused'); }
+    }
+}
+
+function cdSelect(id, label, value) {
+    document.getElementById(id + '_label').textContent = label;
+    document.getElementById(id).value = value;
+    var trigger = document.getElementById(id + '_trigger');
+    trigger.classList.add('cd-selected');
+    trigger.classList.remove('cd-open');
+    document.getElementById(id + '_menu').classList.remove('cd-open');
+    document.querySelectorAll('#' + id + '_menu .cd-option').forEach(function(o) {
+        o.classList.toggle('cd-active', o.textContent.trim() === label);
+    });
+    var wrapper = document.getElementById(id + '_wrapper');
+    if (wrapper) {
+        var fs = wrapper.closest('fieldset');
+        if (fs) { fs.classList.remove('cd-focused'); fs.classList.add('cd-selected-field'); }
+    }
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.cd-wrapper')) {
+        document.querySelectorAll('.cd-menu.cd-open').forEach(function(m) { m.classList.remove('cd-open'); });
+        document.querySelectorAll('.cd-trigger.cd-open').forEach(function(t) { t.classList.remove('cd-open'); });
+        document.querySelectorAll('fieldset.cd-focused').forEach(function(f) { f.classList.remove('cd-focused'); });
+    }
+});
+</script>
+<!-- ─── End Custom Dropdown JS ─── -->
 
 </body>
 </html>
