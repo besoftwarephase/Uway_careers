@@ -79,9 +79,6 @@ img {
 
 body {
     background: #1a1a1a;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     position: relative;
     min-height: 100vh;
     min-width: 960px;
@@ -109,9 +106,8 @@ body {
 
 .form-layout {
     display: grid;
-    grid-template-columns: 220px 1fr ;
+    grid-template-columns: 220px 1fr;
     background: black;
-    
 }
 
 .menu_bar {
@@ -229,7 +225,7 @@ body {
     overflow-y: auto;
     padding-right: 5px;
     max-height: 240px;
-    scrollbar-width:none;
+    scrollbar-width: none;
 }
 
 .field_groups::-webkit-scrollbar {
@@ -438,22 +434,6 @@ input {
     outline: none;
     border-color: #000;
 }
-/* Default placeholder color */
-select#gender {
-    color: #888888cc ;
-}
-
-/* After selection */
-select#gender.selected {
-    color: #f5f5f5b8 !important;
-}
-select.job_roles {
-    color: #ffffffb0 !important;
-}
-
-select.job_roles.selected {
-    color: red;
-}
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -538,8 +518,8 @@ body.no-scroll {
 }
 
 .active-field {
-    border-color: #2563eb69;
-    box-shadow: 0 0 0 2px #2563eb2b;
+    border: 2px solid #2563eb69 !important;
+    box-shadow: #2563eb2b 0px 2px 2px 0px !important;
 }
 
 .active-text {
@@ -664,7 +644,7 @@ input::placeholder {
     color: #f5f5f5b8;
 }
 
-.footer{
+.footer {
     text-align: center;
     font-size: clamp(8px, 2vw, 9px);
     color: #514f4ffc;
@@ -672,34 +652,20 @@ input::placeholder {
     margin-bottom: -26px;
     margin-top: 15px;
 }
+
 .footer strong {
     color: #e5e7ebb8;
 }
-#gender
-{
+
+.salary {
     width: 98%;
-    padding: 10px 4px;
-    margin-top: 0px;
-    border-radius: 5px;
-    font-size: 11px;
-    background: black;
-    cursor: pointer;
-    color: #888888cc;
-    /* border: 1px solid #f5f5f542 !important; */
-    font-weight: 100;
-    border: none !important;
-    outline: none;
 }
-.salary
-{
-    width:98%;
-}
+
 /* ============================================================
    MOBILE TOPBAR (hidden on desktop)
    ============================================================ */
 .mobile_topbar {
     display: none;
-    /* background: linear-gradient(120deg, #1c1c1c, #3a3a3a); */
     padding: 16px 16px;
     align-items: center;
     justify-content: space-between;
@@ -727,7 +693,6 @@ input::placeholder {
     flex-shrink: 0;
 }
 
-/* Step indicator bar for mobile/tablet */
 .mobile_steps {
     display: none;
     background: #111;
@@ -776,6 +741,112 @@ input::placeholder {
 }
 
 /* ============================================================
+   CUSTOM DROPDOWN (cd- prefix — isolated, won't affect other styles)
+   ============================================================ */
+.cd-wrapper {
+    position: relative;
+    width: 98%;
+}
+
+.cd-trigger {
+    width: 100%;
+    padding: 9px 12px;
+    background: #000;
+    border: 1px solid #f5f5f542;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'inter', sans-serif;
+    font-size: 11px;
+    font-weight: 100;
+    color: #888888cc;
+    box-sizing: border-box;
+    user-select: none;
+    transition: border-color 0.2s;
+}
+
+.cd-trigger:hover {
+    border-color: #f5f5f580;
+}
+
+.cd-trigger.cd-open {
+    /* border-color: #2563eb69;
+    box-shadow: 0 0 0 2px #2563eb2b; */
+}
+
+.cd-trigger.cd-selected {
+    color: #f5f5f5b8;
+}
+
+.cd-arrow {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    transition: transform 0.2s;
+}
+
+.cd-trigger.cd-open .cd-arrow {
+    transform: rotate(180deg);
+}
+
+.cd-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #f5f5f530;
+    border-radius: 6px;
+    z-index: 999;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.cd-menu.cd-open {
+    display: block;
+}
+
+.cd-option {
+    padding: 10px 14px;
+    color: #888888cc;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 100;
+    font-family: 'inter', sans-serif;
+    transition: background 0.12s;
+}
+
+.cd-option:hover {
+    background: #ffffff12;
+    color: #f5f5f5cc;
+}
+
+.cd-option.cd-active {
+    background: #2563eb18;
+    color: #f5f5f5b8;
+}
+
+/* Fieldset highlight states for custom dropdowns */
+fieldset.cd-focused {
+    border-color: #2563eb69 !important;
+    box-shadow: 0 0 0 2px #2563eb2b !important;
+}
+
+fieldset.cd-selected-field {
+    border-color: #2563eb50 !important;
+    box-shadow: 0 0 0 1px #2563eb1a !important;
+}
+
+fieldset.cd-focused .legend_label,
+fieldset.cd-selected-field .legend_label {
+    color: #2563ebcc !important;
+}
+
+/* ============================================================
    TABLET — 768px to 959px
    ============================================================ */
 @media (max-width: 959px) {
@@ -808,7 +879,6 @@ input::placeholder {
         padding: 0 !important;
     }
 
-    /* Static (sticky) mobile topbar — stays at top always */
     .mobile_topbar {
         display: flex;
         position: sticky;
@@ -826,7 +896,6 @@ input::placeholder {
         flex-shrink: 0;
     }
 
-    /* Hide desktop sidebar */
     .menu_bar {
         display: none;
     }
@@ -840,7 +909,6 @@ input::placeholder {
         flex-direction: column;
     }
 
-    /* Form layout becomes single column */
     .form-layout {
         display: flex;
         flex-direction: column;
@@ -849,7 +917,6 @@ input::placeholder {
         overflow: hidden;
     }
 
-    /* Scroll happens inside form_content only */
     .form_content {
         padding: 20px 16px 16px;
         flex: 1;
@@ -857,13 +924,11 @@ input::placeholder {
         overflow-x: hidden;
     }
 
-    /* Remove field_groups height cap — let form_content scroll instead */
     .field_groups {
         max-height: none !important;
         overflow-y: visible !important;
     }
 
-    /* Spacers not needed in fixed layout */
     .spacer {
         display: none !important;
     }
@@ -877,7 +942,6 @@ input::placeholder {
         margin-bottom: 20px;
     }
 
-    /* Two-column grid stays on tablet */
     .field_groups {
         grid-template-columns: 1fr 1fr;
         padding-right: 0;
@@ -888,24 +952,26 @@ input::placeholder {
         margin-top: 24px;
     }
 
-    /* Currency position fix for tablet */
     .currency {
         left: auto;
         margin-left: 0;
     }
 
-    /*Footer*/
     .footer {
-       text-align: center;
+        text-align: center;
         font-size: clamp(8px, 2vw, 9px);
         color: #514f4ffc;
         font-weight: 100;
         margin-bottom: 10px;
         margin-top: 20px;
     }
-    .salary
-    {
-        width:100%;
+
+    .salary {
+        width: 100%;
+    }
+
+    .cd-wrapper {
+        width: 100%;
     }
 }
 
@@ -937,12 +1003,10 @@ input::placeholder {
         min-width: unset;
     }
 
-    /* Hide desktop sidebar */
     .menu_bar {
         display: none;
     }
 
-    /* Show mobile header */
     .mobile_topbar {
         display: flex;
     }
@@ -951,7 +1015,6 @@ input::placeholder {
         width: 80px;
     }
 
-    /* Show step indicator */
     .mobile_steps {
         display: flex;
         position: sticky;
@@ -959,19 +1022,16 @@ input::placeholder {
         z-index: 100;
     }
 
-    /* Stack the step label text even shorter on very small screens */
     .mobile_step_label {
         max-width: 60px;
         font-size: 9px;
     }
 
-    /* Form layout single column */
     .form-layout {
         display: block;
         background: black;
         border-radius: 0 0 14px 14px;
         overflow-y: scroll;
-
     }
 
     .form_content {
@@ -981,9 +1041,9 @@ input::placeholder {
     .subtitle {
         font-size: 18px;
     }
-    #resume_file
-    {
-        width:100%
+
+    #resume_file {
+        width: 100%;
     }
 
     .description {
@@ -991,7 +1051,6 @@ input::placeholder {
         margin-bottom: 18px;
     }
 
-    /* Single column on mobile */
     .field_groups {
         grid-template-columns: 1fr;
         max-height: none;
@@ -1004,7 +1063,6 @@ input::placeholder {
         grid-column: 1;
     }
 
-    /* Inputs full width */
     .input_field input,
     .input_field textarea {
         width: 100%;
@@ -1014,7 +1072,6 @@ input::placeholder {
         width: 100%;
     }
 
-    /* Buttons full width on mobile */
     .form_action {
         margin-top: -20px;
         flex-direction: column;
@@ -1037,35 +1094,30 @@ input::placeholder {
         font-size: 13px;
     }
 
-    /* Currency symbol adjust */
     .currency {
         left: auto;
         position: static;
         margin-top: 0;
     }
 
-    /* Datepicker fix */
     #dob {
         width: 100%;
     }
 
-    /* Phone input */
     .phone_number_field {
         margin: 0 8px;
     }
 
-    /* Modal responsive */
     .modal-content {
         width: 90%;
     }
 
-    /* Spacers reduce */
     .spacer {
         height: 10px !important;
         margin-top: 0 !important;
     }
-    /*Footer*/
-    .footer{
+
+    .footer {
         text-align: center;
         font-size: clamp(8px, 2vw, 9px);
         color: #514f4ffc;
@@ -1073,9 +1125,13 @@ input::placeholder {
         margin-bottom: 5px;
         margin-top: 20px;
     }
-    .salary
-    {
-        width:100%;
+
+    .salary {
+        width: 100%;
+    }
+
+    .cd-wrapper {
+        width: 100%;
     }
 }
 
