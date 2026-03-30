@@ -94,6 +94,7 @@ const q_2 = document.getElementById("Question_2");
 const q_3 = document.getElementById("Question_3");
 const q_5 = document.getElementById("job_role");
 const exp  = document.getElementById("exp");
+const work_location = document.getElementBy("work_location");
 const q_6  = document.getElementById("salary");
 const q_7  = document.getElementById("joining_date");
 const q_8  = document.getElementById("resume_file");
@@ -324,7 +325,7 @@ function validateStep2() {
 function validateStep3() {
     let isValid = true;
 
-    const stepFields = [q_5, exp, q_6, q_7, q_9];
+    const stepFields = [q_5, exp, work_location, q_6, q_7, q_9];
     stepFields.forEach(function (field) {
         if (field.value.trim() === "") {
             field.style.setProperty("border-color", "#ff4d4f", "important");
@@ -391,6 +392,7 @@ function validateStep3() {
     fd.append("experience",      exp.value);
     fd.append("expected_salary", "₹ " + parseInt(q_6.value).toLocaleString("en-IN"));
     fd.append("joining_date",    q_7.value);
+    fd.append("work_location", work_location.value);
     fd.append("resume",          file);
     fd.append("message",         q_9.value);
 
