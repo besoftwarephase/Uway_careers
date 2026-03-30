@@ -197,6 +197,11 @@ async function sendEmailsInBackground(data, fileBuffer, ext, resumeURL) {
             <td style="padding:10px 14px;font-weight:300;color:#374151">Joining Date</td>
             <td style="padding:10px 14px;color:#111827">${data.joining_date}</td>
           </tr>
+    
+           <tr style="background:#f9fafb">
+            <td style="padding:10px 14px;font-weight:300;color:#374151">Preffered Work Location</td>
+            <td style="padding:10px 14px;color:#111827">${data.work_location}</td>
+          </tr>
           <tr>
             <td style="padding:10px 14px;font-weight:300;color:#374151">Additional Info</td>
             <td style="padding:10px 14px;color:#111827">${data.message || "—"}</td>
