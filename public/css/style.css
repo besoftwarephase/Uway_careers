@@ -945,11 +945,12 @@ fieldset.cd-selected-field .legend_label {
     .field_groups {
         grid-template-columns: 1fr 1fr;
         padding-right: 0;
+        gap:45px;
     }
 
     .form_action,
     .form_action_2 {
-        margin-top: 24px;
+        margin-top: 55px;
     }
 
     .currency {
