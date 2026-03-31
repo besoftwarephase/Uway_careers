@@ -7,6 +7,44 @@
     <title>Career Page</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- ─── Unsupported Browser Detection (runs before anything else) ─── -->
+    <!--[if IE]>
+    <script>
+        window.location.href = "unsupported.html";
+    </script>
+    <![endif]-->
+    <script>
+    (function () {
+        var unsupported = false;
+
+        // 1. Block Internet Explorer (IE 11 detection)
+        if (!!window.MSInputMethodContext && !!document.documentMode) {
+            unsupported = true;
+        }
+
+        // 2. Feature detection — things YOUR page actually uses
+        var requiredFeatures =
+            typeof Promise !== 'undefined' &&        // ES6 Promises
+            typeof fetch !== 'undefined' &&          // Fetch API (form submission)
+            typeof CSS !== 'undefined' &&            // CSS object
+            CSS.supports('display', 'grid') &&       // CSS Grid (your layout)
+            typeof Symbol !== 'undefined' &&         // ES6 Symbol
+            typeof FileReader !== 'undefined';       // FileReader (resume upload)
+
+        if (!requiredFeatures) unsupported = true;
+
+        // 3. Show banner after DOM is ready
+        if (unsupported) {
+            document.addEventListener('DOMContentLoaded', function () {
+                var banner = document.getElementById('unsupported_browser_banner');
+                if (banner) banner.style.display = 'flex';
+            });
+        }
+    })();
+    </script>
+    <!-- ─── End Unsupported Browser Detection ─── -->
+
     <style>
     .ui-datepicker td {
         border: 0;
@@ -118,13 +156,115 @@
 
     /* Active state for Step 3 plain cd-wrapper dropdowns */
     .cd-wrapper.active-field {
-        border-color: unset ;
+        border-color: unset;
     }
-    /* ─── End Custom Dropdown ─── */
+
+    /* ─── Unsupported Browser Banner ─── */
+    #unsupported_browser_banner {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 99999;
+        background: #1a1a1a;
+        border-bottom: 1px solid #f5f5f530;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'inter', sans-serif;
+        font-size: 12px;
+        color: #888888cc;
+        gap: 12px;
+        height: 100vh;
+        position: relative;
+    }
+    #unsupported_browser_banner .ub-message {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+        position: absolute;
+        margin: auto;
+        /* width: 75%; */
+        /* top: 50%; */
+        /* left: 50%; */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #unsupported_browser_banner .ub-icon {
+        width: 65px;
+        height: 65px;
+        flex-shrink: 0;
+        fill: none;
+        stroke: #f5a623;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    #unsupported_browser_banner .ub-text {
+        color: #888888cc;
+        line-height: 1.5;
+        font-size: 14px;
+        margin-left: 22px;
+    }
+    #unsupported_browser_banner .ub-text a {
+        color: #f5f5f5b8;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    #unsupported_browser_banner .ub-text a:hover {
+        color: #ffffff;
+    }
+    #unsupported_browser_banner .ub-close {
+        cursor: pointer;
+        color: #f5f5f5b8;
+        font-size: 20px;
+        line-height: 1;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: transparent;
+        border: none;
+        flex-shrink: 0;
+        transition: background 0.15s;
+        position: absolute;
+        right: 9px;
+    }
+    #unsupported_browser_banner .ub-close:hover {
+        background: #ffffff15;
+        color: #ffffff;
+    }
+    /* ─── End Unsupported Browser Banner ─── */
     </style>
 </head>
 
 <body>
+
+    <!-- ─── Unsupported Browser Banner ─── -->
+    <div id="unsupported_browser_banner">
+        <div class="ub-message">
+            <!-- Inline warning SVG — no external image dependency -->
+            <svg class="ub-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span class="ub-text">
+                Your browser is outdated and may not display this page correctly.
+                Please upgrade to
+                <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome</a>,
+                <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Firefox</a>, or
+                <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">Microsoft Edge</a>
+                for the best experience.
+            </span>
+        </div>
+        <button class="ub-close" onclick="document.getElementById('unsupported_browser_banner').style.display='none'" title="Dismiss">&times;</button>
+    </div>
+    <!-- ─── End Unsupported Browser Banner ─── -->
+
 <div class="page_wrapper">
     <div class="spacer" style="width: 100%;height: 60px;margin-top:-30px"></div>
     <div class="border-content" style="padding: 15px;border-radius: 22px;background: #44444403;">
@@ -404,7 +544,6 @@
 
                             <div class="input_field">
                                 <p class="Questions">5. Preferred Work Location</p>
-                                <!-- FIX: Both radio buttons now use the same name="Work_Location" -->
                                 <div class="radio_group" id="work_location">
                                     <label class="radio_option">
                                         <input type="radio" name="Work_Location" value="On-site(Chennai)" required>
