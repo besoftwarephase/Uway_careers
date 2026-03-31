@@ -24,101 +24,107 @@ html, body {
 }
 
 body {
-
   background: #1A1A1A;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* or use margin-top: auto on footer */
+  justify-content: flex-end;
   padding: 40px 16px;
   position: relative;
 }
-/*------ UNSUPPORTED BROWSER---------*/
+
+/*------ UNSUPPORTED BROWSER ---------*/
 #unsupported_browser_banner {
-        display: none;
-        position: fixed;
-        top: 40px;
-        left: 0;
-        width: 100%;
-        z-index: 99999;
-        background: #1a1a1a;
-        border-bottom: 1px solid #f5f5f530;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        align-items: center;
-        justify-content: space-between;
-        font-family: 'inter', sans-serif;
-        font-size: 12px;
-        color: #888888cc;
-        gap: 12px;
-        min-height: 100vh;
-        position: relative;
-    }
-    #unsupported_browser_banner .ub-message {
-        display: flex !important;
-        align-items: center;
-        gap: 10px;
-        flex: 1;
-        position: absolute;
-        margin: auto;
-        /* width: 75%; */
-        /* top: 50%; */
-        /* left: 50%; */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    #unsupported_browser_banner .ub-icon {
-        width: 65px;
-        height: 65px;
-        flex-shrink: 0;
-        fill: none;
-        stroke: #f5a623;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-    #unsupported_browser_banner .ub-text {
-        color: #888888cc;
-        line-height: 1.5;
-        font-size: 14px;
-        margin-left: 22px;
-    }
-    #unsupported_browser_banner .ub-text a {
-        color: #f5f5f5b8;
-        text-decoration: underline;
-        text-underline-offset: 2px;
-    }
-    #unsupported_browser_banner .ub-text a:hover {
-        color: #ffffff;
-    }
-    #unsupported_browser_banner .ub-close {
-        cursor: pointer;
-        color: #f5f5f5b8;
-        font-size: 20px;
-        line-height: 1;
-        padding: 2px 6px;
-        border-radius: 4px;
-        background: transparent;
-        border: none;
-        flex-shrink: 0;
-        transition: background 0.15s;
-        position: absolute;
-        right: 9px;
-    }
-    #unsupported_browser_banner .ub-close:hover {
-        background: #ffffff15;
-        color: #ffffff;
-    }
+  display: none;
+  position: fixed;
+  top: 0; /* FIX: was top:40px which caused a gap; full-screen overlay starts at 0 */
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  background: #1a1a1a;
+  border-bottom: 1px solid #f5f5f530;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'inter', sans-serif;
+  font-size: 12px;
+  color: #888888cc;
+  gap: 12px;
+  min-height: 100vh;
+}
+
+#unsupported_browser_banner .ub-message {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* FIX: constrain width so it doesn't overflow on small screens */
+  width: calc(100% - 80px);
+  max-width: 560px;
+}
+
+#unsupported_browser_banner .ub-icon {
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: #f5a623;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#unsupported_browser_banner .ub-text {
+  color: #888888cc;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-left: 22px;
+}
+
+#unsupported_browser_banner .ub-text a {
+  color: #f5f5f5b8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#unsupported_browser_banner .ub-text a:hover {
+  color: #ffffff;
+}
+
+#unsupported_browser_banner .ub-close {
+  cursor: pointer;
+  color: #f5f5f5b8;
+  font-size: 20px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  position: absolute;
+  right: 9px;
+  /* FIX: anchor to top so it's always reachable */
+  top: 12px;
+}
+
+#unsupported_browser_banner .ub-close:hover {
+  background: #ffffff15;
+  color: #ffffff;
+}
 
 /* ─── MAIN CONTENT ──────────────────────────────────────── */
 .main_content {
   width: 100%;
   max-width: 560px;
   position: absolute;
-  top: 50%; 
-  left: 50%; 
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -229,8 +235,8 @@ body {
 .arrow {
   position: absolute;
   right: 5px;
-  top: 32%;
-  transform: translateY(-50%);
+  /* FIX: align to the input field itself, not the whole .input-box which includes errorMsg */
+  top: 5px;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -245,8 +251,9 @@ body {
 }
 
 .arrow:hover {
-  transform: translateY(-50%) scale(1.08);
   box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  /* FIX: removed translateY(-50%) scale since top is now static */
+  transform: scale(1.08);
 }
 
 /* ─── ERROR MESSAGE ─────────────────────────────────────── */
@@ -294,16 +301,17 @@ body {
 .av5 { width: 40px; height: 40px; border: 3px solid #4c4d4fd6; margin-bottom: 8px; margin-left: -14px; z-index: 1; }
 
 /* ─── FOOTER ────────────────────────────────────────────── */
-.footer{
-    position: fixed;
-    bottom: 2% !important;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: clamp(8px, 2vw, 9px);
-    color: #ffffff94;
-    font-weight: 100;
+.footer {
+  position: fixed;
+  bottom: 2% !important;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(8px, 2vw, 9px);
+  color: #ffffff94;
+  font-weight: 100;
 }
+
 .footer strong {
   color: #e5e7ebb8;
 }
@@ -344,29 +352,15 @@ body {
   .avatars {
     bottom: -22px;
   }
-  #unsupported_browser_banner .ub-message {
-    display: grid;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    position: absolute;
-    margin: auto;
-    /* width: 75%; */
-    /* top: 50%; */
-    /* left: 50%; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#unsupported_browser_banner .ub-text {
-    color: #888888cc;
-    line-height: 1.5;
-    font-size: 12px !important;
-    margin-left: 22px;
-}
-  
 
+  #unsupported_browser_banner .ub-message {
+    display: flex;
+    width: calc(100% - 60px);
+  }
+
+  #unsupported_browser_banner .ub-text {
+    font-size: 12px !important;
+  }
 }
 
 /* ════════════════════════════════════════════════════════
@@ -374,12 +368,22 @@ body {
 ════════════════════════════════════════════════════════ */
 @media (max-width: 479px) {
   body {
-    align-items: flex-start;
-    padding: 21px 14px 21px;
+    /* FIX: use flex centering instead of absolute positioning on short viewports */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 14px 50px;
+    min-height: 100vh;
   }
 
   .main_content {
+    /* FIX: switch from absolute centering to normal flow on mobile */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     max-width: 100%;
+    width: 100%;
   }
 
   .hero {
@@ -410,55 +414,80 @@ body {
   }
 
   .input-box input {
-   padding: 13px 40px 13px 17px;
-   font-size: 11px;
-   
+    padding: 13px 40px 13px 17px;
+    font-size: 11px;
   }
-  .arrow
-  {
+
+  .arrow {
     width: 28px;
     height: 28px;
-    top: 31%;
+    /* FIX: keep consistent with desktop fix — align to top of input */
+    top: 5px;
   }
-  
 
-  .av1 { width: 30px; height: 30px; border-width: 2px; margin-right: -10px; margin-bottom: 6px; display: none;}
+  .av1 { width: 30px; height: 30px; border-width: 2px; margin-right: -10px; margin-bottom: 6px; display: none; }
   .av2 { width: 38px; height: 38px; border-width: 2px; margin-right: -12px; margin-bottom: 2px; }
   .av3 { width: 48px; height: 48px; border-width: 2px; }
   .av4 { width: 38px; height: 38px; border-width: 2px; margin-left: -12px; margin-bottom: 2px; }
-  .av5 { width: 30px; height: 30px; border-width: 2px; margin-left: -10px; margin-bottom: 6px; display: none;}
+  .av5 { width: 30px; height: 30px; border-width: 2px; margin-left: -10px; margin-bottom: 6px; display: none; }
 
   .avatars {
     bottom: -18px;
   }
-  .footer{
-    bottom: -25%;
+
+  /* FIX: was bottom:-25% which pushed footer off-screen */
+  .footer {
+    bottom: 2% !important;
   }
-   #unsupported_browser_banner .ub-message {
-    display: grid;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    position: absolute;
+
+  #unsupported_browser_banner .ub-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  #unsupported_browser_banner .ub-message {
+    display: flex;
+    width: calc(100% - 50px);
+    gap: 8px;
+  }
+
+  #unsupported_browser_banner .ub-text {
+    font-size: 11px !important;
+    margin-left: 10px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   SHORT VIEWPORTS (landscape phones, small tablets)
+   Prevent card from overflowing when height < 500px
+════════════════════════════════════════════════════════ */
+@media (max-height: 500px) {
+  .main_content {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     margin: auto;
-    /* width: 75%; */
-    /* top: 50%; */
-    /* left: 50%; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#unsupported_browser_banner .ub-text {
-    color: #888888cc;
-    line-height: 1.5;
-    font-size: 10px !important;
-    margin-left: 22px;
-}
+    padding: 16px 0;
+  }
 
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+  }
 
+  .hero p {
+    margin-bottom: 16px;
+  }
 
-
+  .footer {
+    position: static;
+    margin-top: 12px;
+    padding-bottom: 4px;
+  }
 }
 
 /* ════════════════════════════════════════════════════════
@@ -474,26 +503,25 @@ body {
 
 <body>
 <!-- ─── Unsupported Browser Banner ─── -->
-    <div id="unsupported_browser_banner">
-        <div class="ub-message">
-            <!-- Inline warning SVG — no external image dependency -->
-            <svg class="ub-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span class="ub-text">
-                Your browser is outdated and may not display this page correctly.
-                Please upgrade to
-                <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome</a>,
-                <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Firefox</a>, or
-                <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">Microsoft Edge</a>
-                for the best experience.
-            </span>
-        </div>
-        <button class="ub-close" onclick="document.getElementById('unsupported_browser_banner').style.display='none'" title="Dismiss">&times;</button>
-    </div>
-    <!-- ─── End Unsupported Browser Banner ─── -->
+<div id="unsupported_browser_banner">
+  <div class="ub-message">
+    <svg class="ub-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    <span class="ub-text">
+      Your browser is outdated and may not display this page correctly.
+      Please upgrade to
+      <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome</a>,
+      <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Firefox</a>, or
+      <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">Microsoft Edge</a>
+      for the best experience.
+    </span>
+  </div>
+  <button class="ub-close" onclick="document.getElementById('unsupported_browser_banner').style.display='none'" title="Dismiss">&times;</button>
+</div>
+<!-- ─── End Unsupported Browser Banner ─── -->
 
 <div class="main_content">
 
@@ -539,10 +567,11 @@ body {
   </div>
 
 </div>
-   <!-- FOOTER -->
-  <footer class="footer">
-    © 2026 Powered by <strong>Bliend</strong>. All Rights Reserved
-  </footer>
+
+<!-- FOOTER -->
+<footer class="footer">
+  © 2026 Powered by <strong>Bliend</strong>. All Rights Reserved
+</footer>
 
 <script>
 const emailInput = document.getElementById("email");
@@ -552,83 +581,60 @@ const errorMsg = document.getElementById("errorMsg");
 // Email regex
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
 // ----------------------
 // SUBMIT VALIDATION
 // ----------------------
 submitBtn.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    const email = emailInput.value.trim();
-
-    if(email === ""){
-        errorMsg.textContent = "Email field cannot be empty";
-        emailInput.style.border = "2px solid #e45153";
-        emailInput.focus();
-        return;
-    }
-
-    if(!emailRegex.test(email)){
-        errorMsg.textContent = "Please enter a valid email address";
-        emailInput.style.border = "2px solid #e45153";
-        emailInput.focus();
-        return;
-    }
-
-    // store email
-    localStorage.setItem("userEmail", email);
-
-    errorMsg.style.color = "green";
-    errorMsg.textContent = "Email stored successfully!";
-    emailInput.style.border = "2px solid green";
-    window.location.href = "career.html";
-
-    // setTimeout(function(){
-    //     location.reload();
-    // },5000);
-
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  if(email === ""){
+    errorMsg.textContent = "Email field cannot be empty";
+    emailInput.style.border = "2px solid #e45153";
+    emailInput.focus();
+    return;
+  }
+  if(!emailRegex.test(email)){
+    errorMsg.textContent = "Please enter a valid email address";
+    emailInput.style.border = "2px solid #e45153";
+    emailInput.focus();
+    return;
+  }
+  localStorage.setItem("userEmail", email);
+  errorMsg.style.color = "green";
+  errorMsg.textContent = "Email stored successfully!";
+  emailInput.style.border = "2px solid green";
+  window.location.href = "career.html";
 });
-
 
 // ----------------------
 // REMOVE ERROR WHILE TYPING
 // ----------------------
 emailInput.addEventListener("input", function(){
-
-    const value = emailInput.value.trim();
-
-    if(value !== ""){
-        errorMsg.textContent = "";
-        emailInput.style.border = "2px solid #3276b4";
-    }
-
+  const value = emailInput.value.trim();
+  if(value !== ""){
+    errorMsg.textContent = "";
+    emailInput.style.border = "2px solid #3276b4";
+  }
 });
-
 
 // ----------------------
 // VALIDATE ON BLUR
 // ----------------------
 emailInput.addEventListener("blur", function(){
-
-    const email = emailInput.value.trim();
-
-    if(email === ""){
-        errorMsg.textContent = "";
-        emailInput.style.border = "unset";
-        return;
-    }
-
-    if(!emailRegex.test(email)){
-        errorMsg.textContent = "Please enter a valid email address";
-        emailInput.style.border = "unset";
-    }else{
-        errorMsg.textContent = "";
-        emailInput.style.border = "unset";
-    }
-
+  const email = emailInput.value.trim();
+  if(email === ""){
+    errorMsg.textContent = "";
+    emailInput.style.border = "unset";
+    return;
+  }
+  if(!emailRegex.test(email)){
+    errorMsg.textContent = "Please enter a valid email address";
+    emailInput.style.border = "unset";
+  } else {
+    errorMsg.textContent = "";
+    emailInput.style.border = "unset";
+  }
 });
-
 </script>
 </body>
 </html>
