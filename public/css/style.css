@@ -986,7 +986,7 @@ fieldset.cd-selected-field .legend_label {
     #unsupported_browser_banner .ub-text {
         color: #888888cc;
         line-height: 1.5;
-        font-size: 12px;
+        font-size: 12px  !important;
         /* margin-left: 94px; */
         margin-top: 17px;
         width: 100%;
@@ -1163,7 +1163,7 @@ fieldset.cd-selected-field .legend_label {
     #unsupported_browser_banner .ub-text {
     color: #888888cc;
     line-height: 1.5;
-    font-size: 10px;
+    font-size: 10px !important;
     /* margin-left: 94px; */
     margin-top: 17px;
     width: 100%;
@@ -1199,7 +1199,7 @@ fieldset.cd-selected-field .legend_label {
     {
         color: #888888cc;
         line-height: 1.5;
-        font-size: 10px;
+        font-size: 10px !important;
         /* margin-left: 94px; */
         margin-top: 17px;
         width: 100%;
