@@ -275,7 +275,7 @@
                                         style="background-color:gray;opacity:0;"
                                         aria-hidden="true" tabindex="-1">Previous Step</button>
                                 <button type="button" class="next_btn" id="step1_next_btn"
-                                        onclick="validateStep1()">Next</button>
+                                        onclick="validateStep1()">Proceed</button>
                             </div>
 
                         </section>
@@ -345,7 +345,7 @@
                                 <button type="button" class="previous_btn" id="prevBtn2"
                                         style="background-color:gray;">Go Back</button>
                                 <button type="button" class="next_btn" id="next_btn_2"
-                                        onclick="validateStep2()">Next</button>
+                                        onclick="validateStep2()">Proceed</button>
                             </div>
 
                         </section>
@@ -363,7 +363,7 @@
 
                                 <!-- Preferred Role (custom dropdown) -->
                                 <div class="input_field">
-                                    <label class="Questions" id="job_role_label_text">Preferred Role / Area of Interest</label>
+                                    <label class="Questions" id="job_role_label_text">Preferred Role</label>
                                     <input type="hidden" id="job_role" name="job_role" value="">
                                     <div class="cd-wrapper highlight_text" id="job_role_wrapper"
                                          style="border:1px solid #f5f5f542;border-radius:5px;padding:4px;"
@@ -430,14 +430,14 @@
                                 <div class="input_field">
                                     <label class="Questions" for="salary">Expected Salary</label>
                                     <div class="salary highlight_text" id="salary_wrapper"
-                                         style="display:flex;align-items:center;border:1px solid #f5f5f542 !important;border-radius:5px;overflow:hidden;width:98%;padding:2px;">
-                                        <span class="currency" aria-label="Indian Rupee"
+                                         style="display:flex;align-items:center;border:1px solid #f5f5f542 !important;border-radius:5px;overflow:hidden;width:98%;padding: 4px 2px;position: relative;">
+                                        <span class="currency" style="top: -32px;" aria-label="Indian Rupee"
                                               style="padding:8px 12px;color:#f5f5f542;font-weight:bold;background:transparent;white-space:nowrap;font-size:13px;">₹</span>
                                         <input type="number" class="highlight_text" id="salary" name="salary"
                                                placeholder="75,000" min="1" max="99999"
                                                inputmode="numeric"
                                                oninput="this.value = this.value.slice(0, 5)"
-                                               style="border:none !important;outline:none;flex:1;padding:8px 12px;background:transparent;color:#fff;width:100%;">
+                                               style="border:none !important;outline:none;flex:1;padding:8px 12px;background:transparent;color:#fff;width:100%;margin-left: 14px;">
                                         <span aria-label="Per month"
                                               style="padding:8px 12px;color:#ffffff90;font-size:8px;white-space:nowrap;border-left:1px solid #f5f5f542;background:transparent;">Per month</span>
                                     </div>
@@ -459,19 +459,8 @@
                                     </div>
                                 </div>
 
-                                <!-- Resume Upload -->
-                                <div class="input_field">
-                                    <label class="Questions" for="resume_file">Upload your resume (PDF, DOC, DOCX — max 5 MB)</label>
-                                    <input type="file" class="highlight_text" id="resume_file" name="resume"
-                                           style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
-                                           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                                    <div class="error" style="margin-top:6px;display:none;" id="resume_error_box">
-                                        <p class="error_messages" id="resume_error"></p>
-                                    </div>
-                                </div>
-
-                                <!-- Preferred Work Location -->
-                                <div class="input_field">
+                                 <!-- Preferred Work Location -->
+                                <div class="input_field" style="grid-column: span 2;">
                                     <p class="Questions" id="work_location_legend">Preferred Work Location</p>
                                     <div class="radio_group" id="radio_btn" role="group" aria-labelledby="work_location_legend">
                                         <label class="radio_option">
@@ -488,6 +477,19 @@
                                     </div>
                                 </div>
 
+
+                                <!-- Resume Upload -->
+                                <div class="input_field">
+                                    <label class="Questions" for="resume_file">Upload your resume (PDF, DOC, DOCX — max 5 MB)</label>
+                                    <input type="file" class="highlight_text" id="resume_file" name="resume"
+                                           style="border:1px solid #f5f5f542 !important;border-radius:5px !important;color:#888888cc;"
+                                           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                    <div class="error" style="margin-top:6px;display:none;" id="resume_error_box">
+                                        <p class="error_messages" id="resume_error"></p>
+                                    </div>
+                                </div>
+
+                               
                                 <!-- Additional Information -->
                                 <div class="input_field full_width">
                                     <label class="Questions" for="addition">
