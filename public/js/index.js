@@ -400,21 +400,14 @@ function validateStep3() {
         }
         wi++;
     }
-    const radioGroup = document.getElementById("work_location");
-    if (!workLocationValid) {
+    const radioGroup = document.getElementById("radio_btn");
+    if (!radio_btnValid) {
         if (radioGroup) {
-            // radioGroup.style.setProperty("border", "1px solid #ff4d4f", "important");
-            radioGroup.style.setProperty("border-radius", "5px", "important");
-            radioGroup.style.setProperty("padding", "6px", "important");
         }
-        // showOrCreateStep3Error("work_location", "Please select a preferred work location");
         alert("Please select a preferred work location");
         isValid = false;
     } else {
         if (radioGroup) {
-            radioGroup.style.removeProperty("border");
-            radioGroup.style.removeProperty("border-radius");
-            radioGroup.style.removeProperty("padding");
         }
         removeStep3Error("work_location");
     }
