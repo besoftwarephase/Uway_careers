@@ -118,8 +118,11 @@ document.querySelectorAll(".highlight_text").forEach(function (field) {
         if (container) {
             const errorBox = container.querySelector(".error");
             const errorText = container.querySelector(".error_messages");
+            const errorinline = container.querySelector(".s3-err-job_role_wrapper");
             if (errorBox)  errorBox.style.display = "none";
             if (errorText) errorText.innerText     = "";
+            if (errorinline) errorinline.innerText ="";
+           
         }
     });
 
