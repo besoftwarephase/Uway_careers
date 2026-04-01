@@ -119,9 +119,13 @@ document.querySelectorAll(".highlight_text").forEach(function (field) {
             const errorBox = container.querySelector(".error");
             const errorText = container.querySelector(".error_messages");
             const errorinline = container.querySelector(".s3-err-job_role_wrapper");
+            const errorexp = container.querySelector(".s3-err-exp_wrapper");
+            const errorsalary = contsiner.querySelector(".salary-err");
             if (errorBox)  errorBox.style.display = "none";
             if (errorText) errorText.innerText     = "";
             if (errorinline) errorinline.innerText ="";
+            if (errorexp) errorinline.innerText ="";
+            if (errorsalary) errorsalary.innerText="";
            
         }
     });
