@@ -593,3 +593,22 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileImg)   profileImg.textContent   = firstLetter;
     if (mobileIcon)   mobileIcon.textContent   = firstLetter;
 })();
+
+/*===========================================================
+ FOCUS - applied for resume field
+ ============================================================
+ 
+const resumeInput = document.getElementById("resume_file");
+const resumeWrapper = resumeInput?.closest(".input_field") || resumeInput?.parentElement;
+
+if (resumeInput && resumeWrapper) {
+
+    resumeInput.addEventListener("focus", function () {
+        resumeWrapper.style.borderColor = "2px solid #2563eb9c"; // match your active field color
+    });
+
+    resumeInput.addEventListener("blur", function () {
+        resumeWrapper.style.borderColor = "";  // reset on blur
+    });
+
+}
