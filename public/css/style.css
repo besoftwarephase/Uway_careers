@@ -465,7 +465,7 @@ input[type="number"]::placeholder {
     font-size: 11px;
     color: #f5f5f5b8;
     width: 98%;
-    margin-top: 8px;
+    /* margin-top: 8px; */
     background: unset;
     font-weight: 300;
 }
