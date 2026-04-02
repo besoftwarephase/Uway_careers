@@ -340,7 +340,6 @@ body {
     background: unset;
     border: none;
     font-weight: 300;
-    cursor:pointer;
 }
 
 .input_field textarea {
@@ -608,7 +607,7 @@ input[type="number"]::placeholder {
    ============================================================ */
 .active-field {
     border: 2px solid #2563eb69 !important;
-    box-shadow: #2563eb2b 0px 2px 2px 0px !important;
+    /* box-shadow: #2563eb2b 0px 2px 2px 0px !important; */
 }
 
 .active-text {
@@ -1114,6 +1113,22 @@ fieldset.cd-selected-field .legend_label {
 #unsupported_browser_banner .ub-close:hover {
     background: #ffffff15;
     color: #ffffff;
+}
+/* ============================================================
+   LARGE DESKTOP / XX-LARGE DESKTOP — 1201px
+   ============================================================ */
+@media (min-width: 1201px) {
+    .field_groups {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+/* ============================================================
+   SMALL DESKTOP / LARGE TABLET — 960px to 1200px
+   ============================================================ */
+@media (min-width: 960px) and (max-width: 1200px) {
+    .field_groups {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 /* ============================================================
