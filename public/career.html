@@ -396,6 +396,36 @@
                                     </div>
                                 </div>
 
+                                  <!-- ====== Preferred Work Location — custom dropdown (replaces radio buttons) ====== -->
+                                <div class="input_field">
+                                    <label class="Questions" id="work_location_label_text">Preferred Work Location</label>
+                                    <input type="hidden" id="work_location" name="Work_Location" value="">
+                                    <div class="cd-wrapper highlight_text" id="work_location_wrapper"
+                                         style="border:1px solid #f5f5f542;border-radius:5px;padding:4px;"
+                                         role="combobox" aria-haspopup="listbox"
+                                         aria-labelledby="work_location_label_text">
+                                        <div class="cd-trigger" style="padding: 7px 12px;" id="work_location_trigger"
+                                             onclick="cdToggle('work_location')"
+                                             aria-expanded="false"
+                                             aria-controls="work_location_menu"
+                                             tabindex="0">
+                                            <span id="work_location_label">Select Location</span>
+                                            <svg class="cd-arrow" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                                                <path d="M2 4l4 4 4-4" stroke="#888888cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="cd-menu" id="work_location_menu" role="listbox" aria-label="Preferred work location options">
+                                            <div class="cd-option" role="option" onclick="cdSelect('work_location','Chennai (On-site / Full-Time)','Chennai (On-site/Full-Time)')">Chennai (On-site / Full-Time)</div>
+                                            <div class="cd-option" role="option" onclick="cdSelect('work_location','Bangalore (Hybrid / On-site / Full-Time)','Bangalore (Hybrid/On-site/Full-Time)')">Bangalore (Hybrid / On-site / Full-Time)</div>
+                                        </div>
+                                    </div>
+                                    <div class="error" style="margin-top:6px;display:none;" id="work_location_error_box">
+                                        <p class="error_messages" id="work_location_error"></p>
+                                    </div>
+                                </div>
+                                <!-- ====== End Preferred Work Location ====== -->
+
+
                                 <!-- Work Experience (custom dropdown) -->
                                 <div class="input_field">
                                     <label class="Questions" id="exp_label_text">Work Experience</label>
@@ -460,35 +490,7 @@
                                     </div>
                                 </div>
 
-                                <!-- ====== Preferred Work Location — custom dropdown (replaces radio buttons) ====== -->
-                                <div class="input_field">
-                                    <label class="Questions" id="work_location_label_text">Preferred Work Location</label>
-                                    <input type="hidden" id="work_location" name="Work_Location" value="">
-                                    <div class="cd-wrapper highlight_text" id="work_location_wrapper"
-                                         style="border:1px solid #f5f5f542;border-radius:5px;padding:4px;"
-                                         role="combobox" aria-haspopup="listbox"
-                                         aria-labelledby="work_location_label_text">
-                                        <div class="cd-trigger" style="padding: 7px 12px;" id="work_location_trigger"
-                                             onclick="cdToggle('work_location')"
-                                             aria-expanded="false"
-                                             aria-controls="work_location_menu"
-                                             tabindex="0">
-                                            <span id="work_location_label">Select Location</span>
-                                            <svg class="cd-arrow" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                                                <path d="M2 4l4 4 4-4" stroke="#888888cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </div>
-                                        <div class="cd-menu" id="work_location_menu" role="listbox" aria-label="Preferred work location options">
-                                            <div class="cd-option" role="option" onclick="cdSelect('work_location','Chennai (On-site / Full-Time)','Chennai (On-site/Full-Time)')">Chennai (On-site / Full-Time)</div>
-                                            <div class="cd-option" role="option" onclick="cdSelect('work_location','Bangalore (Hybrid / On-site / Full-Time)','Bangalore (Hybrid/On-site/Full-Time)')">Bangalore (Hybrid / On-site / Full-Time)</div>
-                                        </div>
-                                    </div>
-                                    <div class="error" style="margin-top:6px;display:none;" id="work_location_error_box">
-                                        <p class="error_messages" id="work_location_error"></p>
-                                    </div>
-                                </div>
-                                <!-- ====== End Preferred Work Location ====== -->
-
+                              
                                 <!-- Resume Upload -->
                                 <div class="input_field">
                                     <label class="Questions" for="resume_file">Upload your resume (PDF, DOCs)</label>
