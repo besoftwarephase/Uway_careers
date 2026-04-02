@@ -157,10 +157,10 @@ body {
 
 /* ─── CONTAINER ─────────────────────────────────────────── */
 .container {
-  background: #333232;
+  /* background: #333232; */
   padding: 5px;
   border-radius: 30px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+  /* box-shadow: 0 15px 35px rgba(0,0,0,0.35); */
   width: 100%;
 }
 
@@ -179,10 +179,14 @@ body {
 }
 
 .card h2 {
-  font-size: clamp(18px, 5vw, 32px);
-  font-weight: 400;
-  margin-bottom: 10px;
-  color: #ffffffd4;
+    font-size: clamp(18px, 5vw, 32px);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffffd4;
+    background: linear-gradient(#333232d1, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .card > p {
@@ -568,7 +572,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  © 2026 Powered by <strong>Bliend</strong>. All Rights Reserved
+  © 2026 Powered by Bliend All Rights Reserved
 </footer>
 
 <script>
