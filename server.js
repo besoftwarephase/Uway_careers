@@ -33,7 +33,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 /** File upload constraints */
 const FILE_CONFIG = {
-  MAX_SIZE_BYTES : 25 * 1024 * 1024,          // 25 MB
+  MAX_SIZE_BYTES : 10 * 1024 * 1024,          // 10 MB
   UPLOAD_TIMEOUT : 10_000,                    // 10 s  (Cloudinary)
   ALLOWED_MIMETYPES: new Set([
     "application/pdf",
