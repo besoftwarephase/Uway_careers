@@ -51,7 +51,7 @@ const FILE_CONFIG = {
 };
 
 const EMAIL_CONFIG = {
-  FROM_ADDRESS : "Bliend Careers <careers@teambliend.com>",
+  FROM_ADDRESS : "Bliend Careers <nawin@teambliend.com>",
   ADMIN_TO     : "nawinmoffl@gmail.com",
   ADMIN_CC     : ["ashabliend@gmail.com"],
 };
