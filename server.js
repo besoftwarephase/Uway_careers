@@ -528,9 +528,22 @@ app.use((err, _req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+// app.listen(PORT, () => {
+//   console.log("─────────────────────────────────────────");
+//   console.log(`🚀  Server started on port ${PORT}`);
+//   console.log(`    Environment  : ${process.env.NODE_ENV || "development"}`);
+//   console.log(`    Resend key   : ${process.env.RESEND_API_KEY             ? "✅ set" : "❌ NOT SET"}`);
+//   console.log(`    OAuth Client : ${process.env.GOOGLE_OAUTH_CLIENT_ID     ? "✅ set" : "❌ NOT SET"}`);
+//   console.log(`    OAuth Secret : ${process.env.GOOGLE_OAUTH_CLIENT_SECRET ? "✅ set" : "❌ NOT SET"}`);
+//   console.log(`    OAuth Token  : ${process.env.GOOGLE_OAUTH_REFRESH_TOKEN ? "✅ set" : "❌ NOT SET"}`);
+//   console.log(`    Drive Folder : ${process.env.GOOGLE_DRIVE_FOLDER_ID     ? "✅ set" : "❌ NOT SET"}`);
+//   console.log("─────────────────────────────────────────");
+// });
+
 app.listen(PORT, () => {
   console.log("─────────────────────────────────────────");
   console.log(`🚀  Server started on port ${PORT}`);
+  // ... your existing logs ...
   console.log(`    Environment  : ${process.env.NODE_ENV || "development"}`);
   console.log(`    Resend key   : ${process.env.RESEND_API_KEY             ? "✅ set" : "❌ NOT SET"}`);
   console.log(`    OAuth Client : ${process.env.GOOGLE_OAUTH_CLIENT_ID     ? "✅ set" : "❌ NOT SET"}`);
@@ -538,4 +551,18 @@ app.listen(PORT, () => {
   console.log(`    OAuth Token  : ${process.env.GOOGLE_OAUTH_REFRESH_TOKEN ? "✅ set" : "❌ NOT SET"}`);
   console.log(`    Drive Folder : ${process.env.GOOGLE_DRIVE_FOLDER_ID     ? "✅ set" : "❌ NOT SET"}`);
   console.log("─────────────────────────────────────────");
+
+  // ── Self-ping to prevent Render free-tier spin-down ──
+  if (process.env.RENDER_EXTERNAL_URL) {
+    const https = require("https");
+    const pingUrl = `${process.env.RENDER_EXTERNAL_URL}/health`;
+    setInterval(() => {
+      https.get(pingUrl, (res) => {
+        console.log(`🏓  Self-ping → ${res.statusCode}`);
+      }).on("error", (err) => {
+        console.warn("⚠️  Self-ping failed:", err.message);
+      });
+    }, 10 * 60 * 1000); // every 10 minutes
+    console.log(`🏓  Self-ping active → ${pingUrl}`);
+  }
 });
