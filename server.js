@@ -313,8 +313,8 @@ function buildCandidateEmailHTML(data) {
         </p>
         <p style="font-size:13px;color:#9ca3af;margin-top:24px">
           Questions? Reach us at
-          <a href="mailto:careers@teambliend.com" style="color:#4F46E5;text-decoration:none">
-            careers@teambliend.com
+          <a href="mailto:nawin@teambliend.com" style="color:#4F46E5;text-decoration:none">
+            nawin@teambliend.com
           </a>
         </p>
       </div>
