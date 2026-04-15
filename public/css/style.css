@@ -91,6 +91,7 @@ body {
     overflow-x: scroll;
     overflow-y: hidden;
     scrollbar-width: none;
+    user-select: none
 }
 
 /* ============================================================
@@ -278,11 +279,11 @@ body {
     color: #cccccc;
     text-align: center;
 }
-
+/* 
 .subtitle:hover {
     color: #4383ba;
     transition: all .25s ease;
-}
+} */
 
 .description {
     color: #777;
