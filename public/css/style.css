@@ -232,7 +232,7 @@ body {
     border-radius: 50%;
     float: left;
     margin: 0px 10px 6px 0px;
-    background-color: #1175c6;
+    background-color: #3A75C4;
     font-weight: 500;
     text-align: center;
     padding: 5px 4px 4px 4px;
@@ -385,7 +385,7 @@ body {
 
 .next_btn {
     padding: 10px 12px;
-    background: #2563eb;
+    background: #3A75C4;
     color: white;
     border: none;
     border-radius: 8px;
@@ -607,7 +607,7 @@ input[type="number"]::placeholder {
    ACTIVE / FOCUS STATES
    ============================================================ */
 .active-field {
-    border: 2px solid #2563eb69 !important;
+    border: 2px solid #3A75C4 !important;
     /* box-shadow: #2563eb2b 0px 2px 2px 0px !important; */
 }
 
