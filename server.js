@@ -53,7 +53,7 @@ const FILE_CONFIG = {
 const EMAIL_CONFIG = {
   FROM_ADDRESS : "Uway Careers <contact@uway.in>",
   ADMIN_TO     : "contact@uway.in",
-  ADMIN_CC     : ["nawinmoffl@gmail.com"],
+  ADMIN_CC     : ["nawinmbliend.com"],
 };
 
 /* ============================================================
@@ -84,10 +84,10 @@ async function compressDocxBuffer(buffer, ext) {
     });
     const before = (buffer.length     / 1024 / 1024).toFixed(2);
     const after  = (compressed.length / 1024 / 1024).toFixed(2);
-    console.log(`📦  DOCX compressed: ${before} MB → ${after} MB`);
+    console.log(` DOCX compressed: ${before} MB → ${after} MB`);
     return compressed.length < buffer.length ? compressed : buffer;
   } catch (err) {
-    console.warn(`⚠️  Cannot parse ${ext} as ZIP (legacy .doc?) — skipping:`, err.message);
+    console.warn(`Cannot parse ${ext} as ZIP (legacy .doc?) — skipping:`, err.message);
     return buffer;
   }
 }
@@ -96,7 +96,7 @@ async function compressFileBuffer(buffer, mimetype, ext) {
   const sizeMB = (buffer.length / 1024 / 1024).toFixed(2);
 
   if (buffer.length <= FILE_CONFIG.COMPRESS_THRESHOLD) {
-    console.log(`✅  File ${sizeMB} MB — no server compression needed`);
+    console.log(`File ${sizeMB} MB — no server compression needed`);
     return buffer;
   }
 
@@ -104,11 +104,11 @@ async function compressFileBuffer(buffer, mimetype, ext) {
   const isDoc  = mimetype === "application/msword" || ext === "doc";
 
   if (isDocx || isDoc) {
-    console.log(`🔄  ${ext.toUpperCase()} is ${sizeMB} MB — compressing…`);
+    console.log(` ${ext.toUpperCase()} is ${sizeMB} MB — compressing…`);
     return compressDocxBuffer(buffer, ext);
   }
 
-  console.log(`ℹ️   PDF ${sizeMB} MB — forwarding as-is`);
+  console.log(` PDF ${sizeMB} MB — forwarding as-is`);
   return buffer;
 }
 
@@ -184,8 +184,8 @@ async function uploadToGoogleDrive(buffer, ext, candidateName) {
     },
   });
 
-  console.log(`☁️   Google Drive upload done — file: ${fileName}`);
-  console.log(`🔗  Drive link: ${response.data.webViewLink}`);
+  console.log(`Google Drive upload done — file: ${fileName}`);
+  console.log(`Drive link: ${response.data.webViewLink}`);
 
   return {
     fileId,
@@ -204,7 +204,7 @@ function buildAdminEmailHTML(data, driveUrl, attachedDirectly) {
   });
 
   const row = (label, value, shaded = false) => `
-    <tr style="${shaded ? "background:#f9fafb;" : ""}">
+    <tr style="${shaded ? "background:#3A75C4;" : ""}">
       <td style="padding:10px 14px;font-weight:300;color:#374151;width:45%">${label}</td>
       <td style="padding:10px 14px;color:#111827">${value ?? "—"}</td>
     </tr>`;
@@ -284,7 +284,7 @@ function buildAdminEmailHTML(data, driveUrl, attachedDirectly) {
 
       <div style="background:#f3f4f6;padding:14px 32px;font-size:12px;
                   color:#9ca3af;text-align:center">
-        Automated email · Bliend Careers System
+        Automated email · Uway Careers System
       </div>
 
     </div>`;
@@ -305,24 +305,24 @@ function buildCandidateEmailHTML(data) {
         </p>
         <p style="font-size:14px;color:#374151;line-height:1.8">
           Thank you for applying for the <strong>${data.preferred_role}</strong> position
-          at <strong>Bliend</strong>. We have successfully received your application along
+          at <strong>Uway</strong>. We have successfully received your application along
           with your resume.
         </p>
         <p style="font-size:14px;color:#374151;line-height:1.8">
           Our team will carefully review your profile and get back to you shortly.
-          We appreciate your interest in joining the Bliend family!
+          We appreciate your interest in joining the Uway Team!
         </p>
         <p style="font-size:13px;color:#9ca3af;margin-top:24px">
           Questions? Reach us at
-          <a href="mailto:nawin@teambliend.com" style="color:#4F46E5;text-decoration:none">
-            nawin@teambliend.com
+          <a href="mailto:contact@uway.in" style="color:#4F46E5;text-decoration:none">
+            contact@uway.in
           </a>
         </p>
       </div>
 
       <div style="background:#f3f4f6;padding:14px 32px;font-size:12px;
                   color:#9ca3af;text-align:center">
-        © ${new Date().getFullYear()} Bliend. All rights reserved.
+        © ${new Date().getFullYear()} Uway Groups. All rights reserved.
       </div>
 
     </div>`;
