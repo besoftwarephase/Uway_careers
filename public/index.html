@@ -530,7 +530,7 @@ body {
   <!-- HERO -->
   <div class="hero">
     <h1><img src="images/Uway_w_logo_header.svg" alt="Uway_logo" id="logo"></h1>
-    <p>Define You Prove You Join Us</p>
+    <p>Define you Prove you Join us</p>
   </div>
 
   <!-- LOGIN CARD -->
@@ -628,10 +628,12 @@ function handleEmailSubmit(e) {
   localStorage.setItem("userEmail", email);
   errorMsg.style.color = "green";
   errorMsg.textContent = "Email stored successfully!";
-  emailInput.style.color = "#333232" ;
-  emailInput.style.fontWeight= "bold";
   emailInput.style.border = "2px solid green";
   emailInput.style.backgroundColor = "white";
+  emailInput.style.color = "#333232";
+  emailInput.style.fontWeight = "300";
+  
+  
   window.location.href = "career.html";
 }
 
