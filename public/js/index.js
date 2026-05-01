@@ -621,10 +621,6 @@ function validateStep3() {
             })
             .then(function () {
                 hideLoader();
-                setTimeout(() => {
-                console.log("redirect");
-                }, 5000);
-
                 window.location.href = "/";
             })
             .catch(function (err) {
