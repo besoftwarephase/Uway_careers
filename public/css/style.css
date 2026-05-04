@@ -633,15 +633,13 @@ body.no-scroll {
 .footer {
     text-align: center;
     font-size: clamp(8px, 2vw, 9px);
-    color: #b7b3b3fc
-    font-weight: 300;
+    color: #b1a7a794 !important;
+    font-weight: 300 !important;
     margin-bottom: -26px;
     margin-top: 15px;
 }
 
-.footer strong {
-    color: #e5e7ebb8;
-}
+
 
 /* ============================================================
    JQUERY DATEPICKER OVERRIDES
