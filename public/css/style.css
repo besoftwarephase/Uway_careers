@@ -35,7 +35,6 @@ body {
     min-height: 100vh;
     min-width: 960px;
     overflow-x: hidden;
-    overflow-y: scroll;
     scrollbar-width: none;
     user-select: none
 }
@@ -1068,8 +1067,9 @@ fieldset.cd-selected-field .legend_label {
 @media (max-width: 959px) {
     body {
         min-width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
         align-items: flex-start;
+       overflow-y: scroll;
     }
 
     .page_wrapper {
