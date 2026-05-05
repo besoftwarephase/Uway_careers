@@ -139,17 +139,13 @@ body {
     font-weight: 200px;
 }
 
-.menu_list:hover {
-    color: #4383ba;
-    transition: all .25s ease;
-}
 
 .menu_list.active {
     font-weight: 400;
 }
 
 .menu_list.disabled {
-    font-weight: 100;
+    font-weight: 400;
     color: #ededed99;
 }
 
