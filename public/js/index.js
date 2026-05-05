@@ -374,7 +374,7 @@ function validateStep1() {
         showFieldError("fieldset_dob", "dob_error", "Enter a valid age");
         isValid = false;
     } else if (age < 21 || age > 45) {
-        showFieldError("fieldset_dob", "dob_error", age < 21 ? "Minimum age is 21" : "Maximum age is 45");
+        showFieldError("fieldset_dob", "dob_error", age < 21 ? "Age eligibility: 21 - 45 years" : "Age eligibility: 21 - 45 years");
         isValid = false;
     } else {
         clearFieldError("fieldset_dob", "dob_error");
